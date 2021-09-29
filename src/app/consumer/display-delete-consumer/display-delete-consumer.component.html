@@ -1,0 +1,43 @@
+<div class="text-center">
+  <h3>List of Consumers</h3>
+</div>
+<hr>
+<div class="row">
+  <!-- <h3 class="col-5 offset-2">List of Consumers</h3> -->
+  <div class="col-5 offset-9">
+      <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Consumer</button>
+      <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="editClick()">Edit Consumer</button>  -->
+      <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="deleteClick()">Delete Consumer</button>  -->
+  </div>
+  <br>
+</div>
+<div class="row justify-content-center">
+<div class="col-8">
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr class="table-active text-center table-dark">
+      <th scope="col">Name</th>
+      <th scope="col">Date Of Birth</th>
+      <th scope="col">Email</th>
+      <th scope="col">Pan Number</th>
+      <th scope="col">Agent Name</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of ConsumerList">
+      <td scope="row">{{data.name}}</td>
+      <td scope="row">{{data.dob | date:'yyyy-MM-dd'}}</td>
+      <td scope="row">{{data.email}}</td>
+      <td scope="row">{{data.panNumber}}</td>
+      <td scope="row">{{data.agentName}}</td>
+      <!-- <a [routerLink]="['/updateConsumer/']" ></a> -->
+      <td scope="row"><button type="button" class="btn btn-outline-success text-center" (click)="editClick(data.consumerId)">Edit</button></td>
+      <td scope="row"><button type="button" class="btn btn-outline-danger text-center" (click)="deleteConsumer(data.consumerId)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>

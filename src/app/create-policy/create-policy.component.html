@@ -1,0 +1,106 @@
+<div class="text-center">
+    <h3>Create Policy</h3>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form #policyform="ngForm" (ngSubmit)="policyform.form.valid && 
+            createPolicy(propertyid.value)">
+                <div class="form-group">
+                    <label for="propertyid"> Enter Property ID:</label>
+                    <input class="form-control form-control-sm" type="number" [(ngModel)]="createpolicyform.propertyid" 
+                    placeholder="Property ID" id="propertyid" name="propertyid" #propertyid="ngModel"
+                    [ngClass]="{ 'is-invalid': policyform.submitted && propertyid.invalid }" required/>
+                </div>
+                &nbsp;
+                <div class="form-group">
+                    <button class="btn btn-md btn-success" type="submit" [disabled]="policyform.invalid">
+                        Create Policy
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-md btn-danger" type="reset">
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>Policy Status : </h3> 
+            <div class="alert alert-success" *ngIf="checkPolicyStatus(policyStatus); else policy_not_created" 
+            #policy_created>
+                {{ policyStatus }}
+            </div>
+            <ng-template #policy_not_created>
+                <div class="alert alert-danger">
+                    {{ policyStatus }}
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <h3>List of Properties</h3>
+        <table class="table">
+            <thead>
+                <tr class="table-active text-center table-dark">
+                    <th scope="col">Property Id</th>
+                    <th scope="col">Building Type</th>
+                    <th scope="col">Building Age</th>
+                    <th scope="col">Building Storeys</th>
+                    <th scope="col">Property Value</th>
+                    <th scope="col">Business Id</th>
+                    <th scope="col">Business Value</th>
+                    <th scope="col">Consumer Id</th>
+                    <th scope="col">Consumer Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center table-secondary" *ngFor="let property of properties">
+                    <td>{{ property.propertyId }}</td>
+                    <td>{{ property.buildingType }}</td>
+                    <td>{{ property.buildingAge }}</td>
+                    <td>{{ property.buildingStoreys }}</td>
+                    <td>{{ property.propertyValue }}</td>
+                    <td>{{ property.businessId }}</td>
+                    <td>{{ property.businessValue }}</td>
+                    <td>{{ property.consumerId }}</td>
+                    <td>{{ property.consumerName }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h3>List of Policies</h3>
+        <table class="table">
+            <thead>
+                <tr class="table-active text-center table-dark">
+                    <th scope="col">Policy ID</th>
+                    <th scope="col">Building Type</th>
+                    <th scope="col">Policy Status</th>
+                    <th scope="col">Property ID</th>
+                    <th scope="col">Property Type</th>
+                    <th scope="col">Property Value</th>
+                    <th scope="col">Business Value</th>
+                    <th scope="col">Quote Value</th>
+                    <th scope="col">Consumer ID</th>
+                    <th scope="col">Consumer Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center table-secondary" *ngFor="let policy of policies">
+                    <td>{{ policy.policyId }}</td>
+                    <td>{{ policy.buildingType }}</td>
+                    <td>{{ policy.policyStatus }}</td>
+                    <td>{{ policy.propertyId }}</td>
+                    <td>{{ policy.propertyType }}</td>
+                    <td>{{ policy.propertyValue }}</td>
+                    <td>{{ policy.businessValue }}</td>
+                    <td>{{ policy.quoteValue }}</td>
+                    <td>{{ policy.consumerId }}</td>
+                    <td>{{ policy.consumerName }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

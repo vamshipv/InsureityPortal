@@ -1,0 +1,68 @@
+<div class="text-center">
+    <h3>Get Quote</h3>
+</div>
+<hr>
+<div class="container">
+    <div class="column">
+        <div class="col-md-6">
+            <form #getQuoteForm="ngForm"(ngSubmit)="getQuoteForm.form.valid && viewQuote(businessValue.value, propertyValue.value)"> 
+                <div class="form-group">
+                    <label for="businessValue" class="form-label"> Enter Business Value: </label>
+                    <input class="form-control-range" type="range" id="businessValue" 
+                    #businessValue="ngModel" name="businessValue" 
+                    [(ngModel)]="quoteForm.bvalue" min="0" max="10" onchange="b_value.value=this.value"
+                    [ngClass]="{ 'is-invalid': getQuoteForm.submitted && businessValue.invalid }" required/>
+                    <input class="form-control" type="number" id="b_value" value="0" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="propertyValue" class="form-label">Enter Property Value:</label>
+                    <input class="form-control-range" type="range" id="propertyValue" 
+                    #propertyValue="ngModel" name="propertyValue" 
+                    [(ngModel)]="quoteForm.pvalue" min="0" max="10" onchange="p_value.value=this.value"
+                    [ngClass]="{ 'is-invalid': getQuoteForm.submitted && propertyValue.invalid }" required/>
+                    <input class="form-control form-control-sm" type="number" id="p_value" value="0" disabled>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-md btn-success" type="submit"> Get Quote</button> &nbsp;
+                    <!-- <button class="btn btn-md btn-danger" type="reset"> Reset </button> -->
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="row">
+            <table class="table" *ngIf="isNotEmptyQuote(ViewQuoteData); else null_quote">
+                <thead class="table-active text-center table-dark">
+                    <tr>
+                        <th scope="col" rowspan="2">Quote ID</th>
+                        <th scope="col" colspan="2">Property Value</th>
+                        <th scope="col" colspan="2">Businesss Value</th>
+                        <th scope="col" rowspan="2">Property Type</th>
+                        <th scope="col" rowspan="2">Quote Value</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center table-secondary">
+                        <td>{{ ViewQuoteData.qid }}</td>
+                        <td>{{ ViewQuoteData.propertyValueFrom }}</td>
+                        <td>{{ ViewQuoteData.propertyValueTo }}</td>
+                        <td>{{ ViewQuoteData.businesssValueFrom }}</td>
+                        <td>{{ ViewQuoteData.businesssValueTo }}</td>
+                        <td>{{ ViewQuoteData.propertyType }}</td>
+                        <td>{{ ViewQuoteData.quoteValue }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <div class="alert alert-danger"> -->
+                <ng-template class="alert alert-danger" #null_quote>
+                    <h3>{{ noquote }}</h3>
+                </ng-template>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>

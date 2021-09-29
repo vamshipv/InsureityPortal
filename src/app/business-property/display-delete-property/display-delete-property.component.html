@@ -1,0 +1,46 @@
+<div class="text-center">
+  <h3>List of Business Property</h3>
+</div>
+<hr>
+<div class="row">
+  <!-- <h3 class="col-5 offset-2">List of Business Property</h3> -->
+    <div class="col-5 offset-9">
+        <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Property</button>
+        <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="editClick()">Edit Consumer</button>  -->
+        <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="deleteClick()">Delete Consumer</button>  -->
+    </div>
+    <br>
+  </div>
+  <div class="row justify-content-center">
+  <div class="col-8">
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr class="table-active text-center table-dark">
+        <th scope="col">Building Type</th>
+        <th scope="col">Building Storeys</th>
+        <th scope="col">Building Age</th>
+        <th scope="col">Cost Of Assest</th>
+        <th scope="col">Salvage Value</th>
+        <th scope="col">LifeOfAssest</th>
+        <th scope="col">Property Value</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of propertyList">
+        <td scope="row">{{data.buildingType}}</td>
+        <td scope="row">{{data.buildingStoreys}}</td>
+        <td scope="row">{{data.buildingAge}}</td>
+        <td scope="row">{{data.propertyMaster.costOfAssest}}</td>
+        <td scope="row">{{data.propertyMaster.salvageValue}}</td>
+        <td scope="row">{{data.propertyMaster.usefulLifeOfAssest}}</td>
+        <td scope="row">{{data.propertyMaster.propertyValue}}</td>
+        <td scope="row"><a [routerLink]="['/updateConsumer/']" ><button type="button" class="btn btn-outline-success text-center" (click)="editClick(data.propertyId,data)">Edit</button></a></td>
+        <td scope="row"><button type="button" class="btn btn-outline-danger text-center" (click)="deleteProperty(data.propertyId)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>

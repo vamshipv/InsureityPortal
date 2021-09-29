@@ -1,0 +1,147 @@
+<!-- isActive('/addConsumer?ConsumerId=',consumer_Id) -->
+<div class="col-11 row mt-5" *ngIf="router.url === '/addConsumer/ConsumerId/0'">
+    <div class="col-3 offset-5">
+        <form #consumerForm="ngForm" (ngSubmit)="addConsumer(consumerForm.value)">
+            <h3 class="input-group mb-3">Add Consumer</h3>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                <input type="text" #name = "ngModel" name="name" class="form-control" 
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
+                [(ngModel)]="consumerModel.name" [ngClass]="{ 'is-invalid': consumerForm.submitted && name.invalid }" required>
+                <div class="invalid-feedback" *ngIf="consumerForm.submitted && name.invalid">
+                    <p class="offset-8" *ngIf="name.errors?.required">Name is required</p>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Date Of Birth</span>
+                <input type="date" #dob = "ngModel" name="dob" class="form-control" aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-default" 
+                [(ngModel)]="consumerModel.dob" [ngClass]="{ 'is-invalid': consumerForm.submitted && dob.invalid }" required>
+                <div class="invalid-feedback" *ngIf="consumerForm.submitted && dob.invalid">
+                    <p class="offset-7" *ngIf="dob.errors?.required">Dabe of Birth is required</p>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                <input type="text" #email = "ngModel" name="email" class="form-control" aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-default" 
+                [(ngModel)]="consumerModel.email" [ngClass]="{ 'is-invalid': consumerForm.submitted && email.invalid }" required>
+                <div class="invalid-feedback" *ngIf="consumerForm.submitted && email.invalid">
+                    <p class="offset-8" *ngIf="email.errors?.required">Email is required</p>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Pan Number</span>
+                <input type="text" #panNumber = "ngModel" name="panNumber" class="form-control" aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-default" 
+                [(ngModel)]="consumerModel.panNumber" [ngClass]="{ 'is-invalid': consumerForm.submitted && panNumber.invalid }" required>
+                <div class="invalid-feedback" *ngIf="consumerForm.submitted && panNumber.invalid">
+                    <p class="offset-7" *ngIf="panNumber.errors?.required">Pan Number is required</p>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Agent Id</span>
+                <input type="text" #agentId = "ngModel" name="agentId" class="form-control" aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-default" 
+                [(ngModel)]="consumerModel.agentId" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentId.invalid }" required>
+                <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentId.invalid">
+                    <p class="offset-8" *ngIf="agentId.errors?.required">Agent Id is required</p>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
+                <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-default" 
+                [(ngModel)]="consumerModel.agentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required>
+                <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
+                    <p class="offset-7" *ngIf="agentName.errors?.required">Agent Name id required</p>
+                </div>
+            </div>
+
+            <br>
+            <input type="submit" class="btn btn-outline-danger" value="Create">
+            <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
+        </form>
+        <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
+    </div>
+    </div>
+
+
+
+
+    <div class="col-11 row mt-5" *ngIf="router.url === '/updateConsumer'">
+        <div class="col-3 offset-5">
+            <form #consumerForm="ngForm" (ngSubmit)="addConsumer(consumerForm.value)">
+                <h3 class="input-group mb-3">Update Consumer</h3>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                    <input type="text" #name = "ngModel" name="name" class="form-control" 
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
+                    [(ngModel)]="consumerModel.name" [ngClass]="{ 'is-invalid': consumerForm.submitted && name.invalid }" required>
+                    <div class="invalid-feedback" *ngIf="consumerForm.submitted && name.invalid">
+                        <p class="offset-8" *ngIf="name.errors?.required">Name is required</p>
+                    </div>
+                </div>
+    
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Date Of Birth</span>
+                    <input type="date" #dob = "ngModel" name="dob" class="form-control" aria-label="Sizing example input" 
+                    aria-describedby="inputGroup-sizing-default" 
+                    [(ngModel)]="consumerModel.dob" [ngClass]="{ 'is-invalid': consumerForm.submitted && dob.invalid }" required>
+                    <div class="invalid-feedback" *ngIf="consumerForm.submitted && dob.invalid">
+                        <p class="offset-7" *ngIf="dob.errors?.required">Dabe of Birth is required</p>
+                    </div>
+                </div>
+    
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                    <input type="text" #email = "ngModel" name="email" class="form-control" aria-label="Sizing example input" 
+                    aria-describedby="inputGroup-sizing-default" 
+                    [(ngModel)]="consumerModel.email" [ngClass]="{ 'is-invalid': consumerForm.submitted && email.invalid }" required>
+                    <div class="invalid-feedback" *ngIf="consumerForm.submitted && email.invalid">
+                        <p class="offset-8" *ngIf="email.errors?.required">Email is required</p>
+                    </div>
+                </div>
+    
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Pan Number</span>
+                    <input type="text" #panNumber = "ngModel" name="panNumber" class="form-control" aria-label="Sizing example input" 
+                    aria-describedby="inputGroup-sizing-default" 
+                    [(ngModel)]="consumerModel.panNumber" [ngClass]="{ 'is-invalid': consumerForm.submitted && panNumber.invalid }" required>
+                    <div class="invalid-feedback" *ngIf="consumerForm.submitted && panNumber.invalid">
+                        <p class="offset-7" *ngIf="panNumber.errors?.required">Pan Number is required</p>
+                    </div>
+                </div>
+    
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Agent Id</span>
+                    <input type="text" #agentId = "ngModel" name="agentId" class="form-control" aria-label="Sizing example input" 
+                    aria-describedby="inputGroup-sizing-default" 
+                    [(ngModel)]="consumerModel.agentId" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentId.invalid }" required>
+                    <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentId.invalid">
+                        <p class="offset-8" *ngIf="agentId.errors?.required">Agent Id is required</p>
+                    </div>
+                </div>
+    
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
+                    <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
+                    aria-describedby="inputGroup-sizing-default" 
+                    [(ngModel)]="consumerModel.agentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required>
+                    <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
+                        <p class="offset-7" *ngIf="agentName.errors?.required">Agent Name id required</p>
+                    </div>
+                </div>
+                <br>
+                <input type="submit" class="btn btn-outline-danger" value="Update">
+                <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
+            </form>
+            <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
+        </div>
+        </div>

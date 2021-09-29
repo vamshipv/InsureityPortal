@@ -1,0 +1,46 @@
+<div class="text-center">
+  <h3>List of Consumer Business</h3>
+</div>
+<hr>
+<div class="row">
+  <!-- <h3 class="col-5 offset-2">List of Consumer Business</h3> -->
+  <div class="col-5 offset-9">
+      <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Business</button>
+      <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="editClick()">Edit Consumer</button>  -->
+      <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="deleteClick()">Delete Consumer</button>  -->
+  </div>
+  <br>
+</div>
+<div class="row justify-content-center">
+<div class="col-8">
+<table class="table">
+  <thead>
+    <tr class="table-active text-center table-dark">
+      <th scope="col">Business Name</th>
+      <th scope="col">Business Type</th>
+      <th scope="col">Total Employees</th>
+      <th scope="col">Business Value</th>
+      <th scope="col">Business TurnOver</th>
+      <th scope="col">Capital Invest</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of businessList">
+        <td>{{data.businessName}}</td>
+        <td>{{data.businessType}}</td>
+        <td>{{data.totalEmployees}}</td>
+        <td>{{data.businessMaster.businessValue}}</td>
+        <td>{{data.businessMaster.businessTurnOver}}</td>
+        <td>{{data.businessMaster.capitalInvest}}</td>
+        <!-- <a [routerLink]="['/updateBusiness/',{id : data.businessId}]" ></a> -->
+        <!-- (click)="editClick(data)" -->
+        <td>
+          <button type="button" class="btn btn-outline-success text-center" (click)="editClick(data)">Edit</button></td>
+      <td><button type="button" class="btn btn-outline-danger text-center" (click)="deleteBusiness(data.businessId)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>

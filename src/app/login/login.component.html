@@ -1,0 +1,58 @@
+<!-- <style>
+    body{
+        float: center;
+        margin-top: 10px;
+        margin-left: 500px;
+    }
+</style>
+
+
+<body >
+<form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <div class="container-fluid">
+        <h2 class="form-signin-heading">Login</h2>
+        <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
+        <br/>
+        <label for="username" class="sr-only">Email address</label>
+        <input type="email" id="username" name="username" style="width:200px"ngModel class="form-control" 
+        placeholder="User Name" required autofocus>
+        <br/>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password"  style="width:200px" ngModel class="form-control" 
+        placeholder="Password" required>
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" style="width:200px"type="submit">Sign in</button>
+    </div>
+</form>
+</body> -->
+
+
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <div class="mb-md-5 mt-md-4 pb-5">
+                <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">  
+                
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                <div class="form-outline form-white mb-4">
+                  <input type="name" name="username" ngModel id="typeEmailX" class="form-control form-control-lg" placeholder="Agent Name" />
+                  <!-- <label class="form-label" for="typeEmailX">Agent Name</label> -->
+                </div>
+                <div class="form-outline form-white mb-4">
+                  <input type="password" name="password" ngModel id="typePasswordX" class="form-control form-control-lg" placeholder="Password"/>
+                  <!-- <label class="form-label" for="typePasswordX">Password</label> -->
+                  <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
+                </div>
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

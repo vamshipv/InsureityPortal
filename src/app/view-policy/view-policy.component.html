@@ -1,0 +1,65 @@
+<div class="text-center">
+    <h3>View Policy By ID</h3>
+</div>
+<hr>
+<div class="container-fluid">
+    <div class="container">
+        <div class="col-md-6">
+            <form #viewpolicyform="ngForm" (ngSubmit)="viewpolicyform.form.valid && viewPolicy(policyid.value)">
+                <div class="form-group">
+                    <label for="policyid">Enter Policy Id:</label>
+                    <input class="form-control" type="number" id="policyid" #policyid="ngModel"
+                    placeholder="Enter Policy ID here"  name="policyid" [(ngModel)]="policyform.policyid"
+                    [ngClass]="{ 'is-invalid': viewpolicyform.submitted && policyid.invalid }" required />
+                    <div class="invalid-feedback" *ngIf="viewpolicyform.submitted && policyid.invalid">
+                        <p *ngIf="policyid.errors?.required">Policy ID is required</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-block btn-success" type="submit" [disabled]="viewpolicyform.form.invalid">
+                            View Policy
+                    </button>
+                    <button class="btn btn-block btn-danger" type="reset">
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="row">
+            <table class="table" *ngIf="isNotEmptyPolicy(ViewPolicyData); else nopolicyfound"> 
+                <thead>
+                    <tr class="table-active text-center table-dark">
+                        <th scope="col">Policy ID</th>
+                        <th scope="col">Building Type</th>
+                        <th scope="col">Policy Status</th>
+                        <th scope="col">Property ID</th>
+                        <th scope="col">Property Type</th>
+                        <th scope="col">Property Value</th>
+                        <th scope="col">Business Value</th>
+                        <th scope="col">Quote Value</th>
+                        <th scope="col">Consumer ID</th>
+                        <th scope="col">Consumer Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center table-secondary">
+                        <td>{{ ViewPolicyData.policyId }}</td>
+                        <td>{{ ViewPolicyData.buildingType }}</td>
+                        <td>{{ ViewPolicyData.policyStatus }}</td>
+                        <td>{{ ViewPolicyData.propertyId }}</td>
+                        <td>{{ ViewPolicyData.propertyType }}</td>
+                        <td>{{ ViewPolicyData.propertyValue }}</td>
+                        <td>{{ ViewPolicyData.businessValue }}</td>
+                        <td>{{ ViewPolicyData.quoteValue }}</td>
+                        <td>{{ ViewPolicyData.consumerId }}</td>
+                        <td>{{ ViewPolicyData.consumerName }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template  #nopolicyfound>
+               <h3 > {{ nopolicy }} </h3>
+            </ng-template>
+        </div>
+    </div>
+</div>
