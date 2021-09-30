@@ -1,12 +1,9 @@
 <!-- isActive('/addConsumer?ConsumerId=',consumer_Id) -->
-<div class="text-center">
-    <h3>Create Business For The Consumer</h3>
-  </div>
-  <hr>
 <div class="col-11 row mt-5" *ngIf="router.url === '/addBusiness/BusinessId/0'">
     <div class="col-3 offset-5">
         <form #businessrForm="ngForm" (ngSubmit)="addBusiness(businessrForm.value)">
-            <!-- <h3 class="input-group mb-3">Add Business</h3> -->
+            <h2 class="input-group mb-3">Add Business Details</h2>
+            <hr>
             
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Business Name</span>
@@ -69,12 +66,66 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                            </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>1000</td>
+                                    <td>10000</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>2400</td>
+                                    <td>20000</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>4500</td>
+                                    <td>30000</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>7200</td>
+                                    <td>40000</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>4</td>
+                                    <td>10000</td>
+                                    <td>50000</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>5</td>
+                                    <td>13200</td>
+                                    <td>60000</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>6</td>
+                                    <td>17500</td>
+                                    <td>70000</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>7</td>
+                                    <td>20000</td>
+                                    <td>80000</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>25200</td>
+                                    <td>90000</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>9</td>
+                                    <td>28000</td>
+                                    <td>100000</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -112,7 +163,7 @@
             <input type="submit" class="btn btn-outline-danger" value="Create">
             <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
         </form>
-        <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
+        <div class="alert alert-success" *ngIf="create_message">{{create_message}}</div>
     </div>
     </div>
 

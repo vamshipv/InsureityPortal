@@ -16,26 +16,26 @@
 
 <table class="table">
   <thead class="thead-dark">
-    <tr class="table-active text-center table-dark">
-      <th scope="col">Name</th>
-      <th scope="col">Date Of Birth</th>
-      <th scope="col">Email</th>
-      <th scope="col">Pan Number</th>
-      <th scope="col">Agent Name</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
+    <tr class="table-active table-dark">
+      <th>Name</th>
+      <th>Date Of Birth</th>
+      <th>Email</th>
+      <th>Pan Number</th>
+      <th>Agent Name</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of ConsumerList">
-      <td scope="row">{{data.name}}</td>
-      <td scope="row">{{data.dob | date:'yyyy-MM-dd'}}</td>
-      <td scope="row">{{data.email}}</td>
-      <td scope="row">{{data.panNumber}}</td>
-      <td scope="row">{{data.agentName}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.dob | date:'yyyy-MM-dd'}}</td>
+      <td>{{data.email}}</td>
+      <td>{{data.panNumber}}</td>
+      <td>{{data.agentName}}</td>
       <!-- <a [routerLink]="['/updateConsumer/']" ></a> -->
-      <td scope="row"><button type="button" class="btn btn-outline-success text-center" (click)="editClick(data.consumerId)">Edit</button></td>
-      <td scope="row"><button type="button" class="btn btn-outline-danger text-center" (click)="deleteConsumer(data.consumerId)">Delete</button></td>
+      <td><button type="button" class="btn btn-outline-success text-center" (click)="editClick(data.consumerId)">Edit</button></td>
+      <td><button type="button" class="btn btn-outline-danger text-center" (click)="deleteConsumer(data.consumerId)">Delete</button></td>
     </tr>
   </tbody>
 </table>

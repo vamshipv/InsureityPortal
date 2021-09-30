@@ -62,17 +62,23 @@ export class DisplayDeletePropertyComponent implements OnInit {
     this.router.navigate(['/addProperty/PropertyId/0']);
   }
 
-  editClick(businessId:number,business:BusinessPropertyModel) : void
+  editClick(property:BusinessPropertyModel) : void
   {
-    this.service.updateProperty(businessId,business)
-    .pipe(first())
-    .subscribe({
-      next: () => {
-        this.router.navigateByUrl('/updateProperty/');
-        console.log("Update Done");
-        // cu-consumer/updateConsumer/1 UpdateConsumer?ConsumerId=1
-      }
-    });
+    // debugger;
+    // this.service.getPropertyById(businessId)
+    // .pipe(first())
+    // .subscribe({
+    //   next: () => {
+    //     this.router.navigateByUrl('/updateProperty/'+ businessId);
+    //     console.log("Update Done");
+    //     // cu-consumer/updateConsumer/1 UpdateConsumer?ConsumerId=1
+    //   }
+    // });
     // this.router.navigate(['/cu-consumer']);
+    // console.log(history.state);
+    //     console.log("Update Done");
+    // this.router.navigate(['/updateProperty/',property.propertyId]);
+    this.router.navigateByUrl('/updateProperty/', {state: { property } });
+    console.log(property);
   }
 }

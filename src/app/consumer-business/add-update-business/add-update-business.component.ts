@@ -51,7 +51,7 @@ export class AddUpdateBusinessComponent implements OnInit {
     // debugger;
     this.service.addBusiness(business).subscribe(data => 
       {
-      this.create_message="created with BusinessId" + business.businessId;
+      this.create_message="Consumer Business was Added";
       this.service.getBusinessList();
       console.log(data);
       },

@@ -28,10 +28,11 @@ export class BusinessPropertyService {
       })
     });
   }
-
-  updateProperty(propertyId:number ,property:BusinessPropertyModel){
+  // https://localhost:44396/api/Consumer/UpdateProperty?PropertyId=3
+  updateProperty(property:BusinessPropertyModel){
+    // debugger;
     console.log(property);
-    return this.http.put(this.ApiUrl+'/UpdateProperty?PropertyId='+propertyId,property,
+    return this.http.put(this.ApiUrl+'/UpdateProperty?PropertyId='+property.propertyId, property,
     {
       headers:new HttpHeaders({
         'Content-Type':'application/json;charset=UTF-8',
@@ -51,4 +52,16 @@ export class BusinessPropertyService {
     })
   });
   }
+
+  getPropertyById(propertyId:number)
+  {
+    return this.http.get(this.ApiUrl + '/GetPropertyById?PropertyId=' + propertyId,
+    {
+      headers:new HttpHeaders({
+        'Content-Type':'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Method':'*'
+    })
+  });
+}
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { BusinessPropertyService } from 'src/app/Services/business-property.service';
 import { BusinessPropertyModel } from 'src/app/Models/business-property.model';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-update-property',
@@ -28,12 +30,26 @@ export class AddUpdatePropertyComponent implements OnInit {
       propertyValue: 0,
     }
   };
+  
+  updatedData: any;
+
+  state$ : Observable<BusinessPropertyModel>
 
   property_Id : number = 0;
-  constructor(private service:BusinessPropertyService, public router: Router) { }
+  constructor(private service:BusinessPropertyService, public router: Router, public route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getProperty();
+    // this.getProperty();
+    // this.data = this.service.data;
+    // this.service.data = undefined;
+    // this.state$ = this.route.paramMap.pipe(map(() => window.history.state))
+    // console.log(this.state$);
+    this.router.getCurrentNavigation()?.extras.state;
+    // {{debugger}}
+    console.log(history.state);
+    console.log("Navigated to Update Page");
+    this.updatedData = history.state;
+    console.log(this.updatedData);
   }
 
   getProperty()
@@ -49,7 +65,7 @@ export class AddUpdatePropertyComponent implements OnInit {
   {
     this.service.addProperty(property).subscribe(data => 
       {
-      this.create_message="created with PropertyId" + property.propertyId;
+      this.create_message="Property Business Was Added";
       this.service.getPropertyList();
       console.log(data);
       },
@@ -58,11 +74,13 @@ export class AddUpdatePropertyComponent implements OnInit {
   }
 
   update_message:string ="";
-  updateProperty(propertyId:number,property:BusinessPropertyModel) : void
+  updateProperty(property:BusinessPropertyModel) : void
   {
-      this.service.updateProperty(propertyId,property).subscribe(data => {
+      // debugger;
+      this.service.updateProperty(property).subscribe(data => {
       this.update_message = "Updated Property";
       this.service.getPropertyList();
+      this.router.navigate(['/businessProperty']);
       console.log(data);
     })
   }

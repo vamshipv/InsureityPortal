@@ -2,8 +2,8 @@
 <div class="col-11 row mt-5" *ngIf="router.url === '/addConsumer/ConsumerId/0'">
     <div class="col-3 offset-5">
         <form #consumerForm="ngForm" (ngSubmit)="addConsumer(consumerForm.value)">
-            <h3 class="input-group mb-3">Add Consumer</h3>
-            
+            <h3 class="input-group mb-3">Create Consumer</h3>
+            <hr>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                 <input type="text" #name = "ngModel" name="name" class="form-control" 
@@ -68,7 +68,13 @@
             <input type="submit" class="btn btn-outline-danger" value="Create">
             <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
         </form>
-        <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
+        <br>
+        <div class="alert alert-success" *ngIf="create_message">{{create_message}} 
+            <!-- <button class="btn btn-outline-dark"  routerLink = "/addBusiness/BussinessId/">Continue to Add Business</button> -->
+        </div>
+        <!-- <div *ngIf="create_message">
+            
+        </div> -->
     </div>
     </div>
 

@@ -52,7 +52,7 @@ export class AddUpdateConsumerComponent implements OnInit {
   {
     this.service.addConsumer(consumer).subscribe(data => 
       {
-      this.create_message="created with ConsumerId" + consumer.name;
+      this.create_message="New Consumer Created";
       this.service.getConsumerList();
       console.log(data);
       },

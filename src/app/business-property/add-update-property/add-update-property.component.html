@@ -1,9 +1,10 @@
 <!-- isActive('/addConsumer?ConsumerId=',consumer_Id) -->
-<div class="col-10 row mt-5" *ngIf="router.url === '/addProperty/PropertyId/0'">
-    <div class="col-4 offset-5">
-        <form #propertyForm="ngForm" (ngSubmit)="addProperty(propertyForm.value)">
-            <h3 class="input-group mb-3">Add Property</h3>
 
+<div class="col-9 row mt-5" *ngIf="router.url === '/addProperty/PropertyId/0'">
+    <div class="col-4 offset-6">
+        <form #propertyForm="ngForm" (ngSubmit)="addProperty(propertyForm.value)">
+            <h3 class="input-group mb-3">Add Property Details</h3>
+            <hr>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Building Type</span>
                 <input type="text" #buildingType="ngModel"  name="buildingType" class="form-control" 
@@ -75,13 +76,76 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                            </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>500</td>
+                                    <td>100000</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1200</td>
+                                    <td>200000</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>2100</td>
+                                    <td>300000</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>3200</td>
+                                    <td>400000</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>4</td>
+                                    <td>4500</td>
+                                    <td>500000</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>5</td>
+                                    <td>6000</td>
+                                    <td>600000</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>6</td>
+                                    <td>7700</td>
+                                    <td>700000</td>
+                                    <td>11</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>7</td>
+                                    <td>9600</td>
+                                    <td>800000</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>11700</td>
+                                    <td>900000</td>
+                                    <td>13</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>9</td>
+                                    <td>14000</td>
+                                    <td>1000000</td>
+                                    <td>14</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -116,25 +180,44 @@
     </div>
     </div>
 
-    <div class="col-11 row mt-5" *ngIf="router.url === '/updateBusiness'">
+
+
+
+
+
+    <div class="col-11 row mt-5" *ngIf="router.url === '/updateProperty/'">
+    <!-- <div class="col-11 row mt-5" *ngIf="router.navigate(['/updateProperty/'],updatedData.propertyId)">  -->
         <div class="col-3 offset-5">
-            <form #propertyForm="ngForm" (ngSubmit)="addProperty(propertyForm.value)">
+            <form #propertyForm="ngForm" (ngSubmit)="updateProperty(propertyForm.value)">
                 <h3 class="input-group mb-3">Update Busines</h3>
+                <!-- {{updatedData.property.propertyId}} -->
+                <!--  -->
+                <div class="input-group mb-3">
+                    <input type="number" #propertyId="ngModel"  name="propertyId" class="form-control" 
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
+                    [(ngModel)]="updatedData.property.propertyId" [ngClass]="{ 'is-invalid': propertyForm.submitted && propertyId.invalid }" required
+                    hidden>
+                </div>
+                <!--  -->
+
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Building Type</span>
                     <input type="text" #buildingType="ngModel"  name="buildingType" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="propertyModel.buildingType" [ngClass]="{ 'is-invalid': propertyForm.submitted && buildingType.invalid }" required>
+                    [(ngModel)]="updatedData.property.buildingType" [ngClass]="{ 'is-invalid': propertyForm.submitted && buildingType.invalid }" required>
                     <div class="invalid-feedback" *ngIf="propertyForm.submitted && buildingType.invalid">
                         <p class="offset-8" *ngIf="buildingType.errors?.required">Building type is required</p>
                     </div>
                 </div>
+                <!-- {{updatedData.property.buildingStoreys}}
+                buildingStoreys : <input type="number" id="buildingStoreys" name="buildingStoreys"
+                [(ngModel)] ="updatedData.buildingStoreys"> -->
                 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Building Storeys</span>
                     <input type="number" #buildingStoreys ="ngModel" name="buildingStoreys" class="form-control"
                      aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                     [(ngModel)]="propertyModel.buildingStoreys" [ngClass]="{ 'is-invalid': propertyForm.submitted && buildingStoreys.invalid }" required>
+                     [(ngModel)]="updatedData.property.buildingStoreys" [ngClass]="{ 'is-invalid': propertyForm.submitted && buildingStoreys.invalid }" required>
                      <div class="invalid-feedback" *ngIf="propertyForm.submitted && buildingStoreys.invalid">
                         <p class="offset-8" *ngIf="buildingStoreys.errors?.required">Building Storeys is required</p>
                      </div>
@@ -144,7 +227,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Building Age</span>
                     <input type="number" #buildingAge ="ngModel" name="buildingAge" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="propertyModel.buildingAge" [ngClass]="{ 'is-invalid': propertyForm.submitted && buildingAge.invalid }" required>
+                    [(ngModel)]="updatedData.property.buildingAge" [ngClass]="{ 'is-invalid': propertyForm.submitted && buildingAge.invalid }" required>
                     <div class="invalid-feedback" *ngIf="propertyForm.submitted && buildingAge.invalid">
                         <p class="offset-8" *ngIf="buildingAge.errors?.required">Building Age is required</p>
                     </div>
@@ -154,7 +237,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Business Id</span>
                     <input type="number" #businessId ="ngModel" name="businessId" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="propertyModel.businessId" [ngClass]="{ 'is-invalid': propertyForm.submitted && businessId.invalid }" required>
+                    [(ngModel)]="updatedData.property.businessId" [ngClass]="{ 'is-invalid': propertyForm.submitted && businessId.invalid }" required>
                     <div class="invalid-feedback" *ngIf="propertyForm.submitted && businessId.invalid">
                         <p class="offset-8" *ngIf="businessId.errors?.required">Building Id is required</p>
                     </div>
@@ -164,7 +247,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Property Master Id</span>
                     <input type="number" #propertyMasterId ="ngModel" name="propertyMasterId" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="propertyModel.propertyMasterId" [ngClass]="{ 'is-invalid': propertyForm.submitted && propertyMasterId.invalid }" required>
+                    [(ngModel)]="updatedData.property.propertyMasterId" [ngClass]="{ 'is-invalid': propertyForm.submitted && propertyMasterId.invalid }" required>
                     <div class="invalid-feedback" *ngIf="propertyForm.submitted && propertyMasterId.invalid">
                         <p class="offset-8" *ngIf="propertyMasterId.errors?.required">Property Id is required</p>
                     </div>
@@ -174,6 +257,7 @@
                 <input type="submit" class="btn btn-outline-danger" value="Update">
                 <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
             </form>
-            <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
+            <div class="alert alert-success" *ngIf="create_message">{{create_message}}</div>
         </div>
         </div>
+        <!-- {{updatedData | json }} -->

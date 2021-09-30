@@ -14,12 +14,12 @@ export class HomePageComponent {
   isUserAuthenticated() {
     const token : string | null = localStorage.getItem("jwt");
     if (token && !this.jwtHelper.isTokenExpired(token) && token != null) {
-      console.log("wokrk");
+      // console.log("wokrk");
       return true;
 
     }
     else {
-      console.log("not wokrk");
+      // console.log("not wokrk");
       return false;
     }
   }

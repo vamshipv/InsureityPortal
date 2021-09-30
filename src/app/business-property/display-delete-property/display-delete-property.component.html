@@ -16,7 +16,7 @@
 
   <table class="table">
     <thead class="thead-dark">
-      <tr class="table-active text-center table-dark">
+      <tr class="table-active table-dark">
         <th scope="col">Building Type</th>
         <th scope="col">Building Storeys</th>
         <th scope="col">Building Age</th>
@@ -37,7 +37,9 @@
         <td scope="row">{{data.propertyMaster.salvageValue}}</td>
         <td scope="row">{{data.propertyMaster.usefulLifeOfAssest}}</td>
         <td scope="row">{{data.propertyMaster.propertyValue}}</td>
-        <td scope="row"><a [routerLink]="['/updateConsumer/']" ><button type="button" class="btn btn-outline-success text-center" (click)="editClick(data.propertyId,data)">Edit</button></a></td>
+        <!-- <a [routerLink]="['/updateProperty']" ></a> -->
+        <td scope="row"><button type="button" 
+          class="btn btn-outline-success text-center" (click)="editClick(data)">Edit</button></td>
         <td scope="row"><button type="button" class="btn btn-outline-danger text-center" (click)="deleteProperty(data.propertyId)">Delete</button></td>
       </tr>
     </tbody>

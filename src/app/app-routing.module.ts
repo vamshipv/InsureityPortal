@@ -21,19 +21,18 @@ import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   {path:'consumer', component:ConsumerComponent},
-  {path:'addConsumer/ConsumerId/0', component:AddUpdateConsumerComponent},
+  {path:'addConsumer/ConsumerId/:id', component:AddUpdateConsumerComponent},
   {path:'updateConsumer', component:AddUpdateConsumerComponent},
   {path:'displayConsumer',component:DisplayDeleteConsumerComponent},
 
   {path:'consumerBusiness', component:ConsumerBusinessComponent},
-  {path:'addBusiness/BusinessId/0', component:AddUpdateBusinessComponent},
+  {path:'addBusiness/BusinessId/:id', component:AddUpdateBusinessComponent},
   {path:'updateBusiness', component:AddUpdateBusinessComponent},
   {path:'displayBusiness',component:DisplayDeleteBusinessComponent},
 
   {path:'businessProperty', component:BusinessPropertyComponent},
-  {path:'addProperty/PropertyId/0', component:AddUpdatePropertyComponent},
-  {path:'updateProperty', component:AddUpdatePropertyComponent , children: [{
-    path: 'id', component:AddUpdatePropertyComponent }]},
+  {path:'addProperty/PropertyId/:id', component:AddUpdatePropertyComponent},
+  {path:'updateProperty/:id', component:AddUpdatePropertyComponent},
   {path:'displayProperty',component:DisplayDeletePropertyComponent},
 
   {path:'createPolicy',component:CreatePolicyComponent},
