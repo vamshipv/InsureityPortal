@@ -64,19 +64,7 @@ export class DisplayDeleteBusinessComponent implements OnInit {
   
   editClick(business:ConsumerBusinessModel) : void
   {
-    // this.service.updateBusiness(business)
-    // .pipe(first())
-    // .subscribe({
-    //   next: () => {
-    //     this.router.navigate(['/updateBusiness/' + business.businessId]);
-    //     console.log("Update Done");
-    //     // cu-consumer/updateConsumer/1 UpdateConsumer?ConsumerId=1
-    //   }
-    // });
-    // this.router.navigate(['/cu-consumer']);
-      this.service.updateData = business;
-      this.router.navigate(['/updateBusiness/' + business.businessId]);
-      // this.router.navigate(['/updateBusiness' + {state :{id:business.businessId}}]);
-
+    this.router.navigateByUrl('/updateBusiness/', {state: { business } });
+    console.log(business);
   }
 }

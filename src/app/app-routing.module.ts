@@ -17,17 +17,17 @@ import { GetQuoteComponent } from './get-quote/get-quote.component';
 import { IssuePolicyComponent } from './issue-policy/issue-policy.component';
 import { ViewPolicyComponent } from './view-policy/view-policy.component';
 import { LoginComponent } from './login/login.component';
-import { HomePageComponent } from './home-page/home-page.component';
+
 
 const routes: Routes = [
   {path:'consumer', component:ConsumerComponent},
   {path:'addConsumer/ConsumerId/:id', component:AddUpdateConsumerComponent},
-  {path:'updateConsumer', component:AddUpdateConsumerComponent},
+  {path:'updateConsumer/:id', component:AddUpdateConsumerComponent},
   {path:'displayConsumer',component:DisplayDeleteConsumerComponent},
 
   {path:'consumerBusiness', component:ConsumerBusinessComponent},
   {path:'addBusiness/BusinessId/:id', component:AddUpdateBusinessComponent},
-  {path:'updateBusiness', component:AddUpdateBusinessComponent},
+  {path:'updateBusiness/:id', component:AddUpdateBusinessComponent},
   {path:'displayBusiness',component:DisplayDeleteBusinessComponent},
 
   {path:'businessProperty', component:BusinessPropertyComponent},
@@ -39,7 +39,6 @@ const routes: Routes = [
   {path:'issuePolicy',component:IssuePolicyComponent},
   {path:'viewPolicy',component:ViewPolicyComponent},
   {path:'getQuote',component:GetQuoteComponent},
-  {path:'homePage',component:HomePageComponent},
   {path:'login',component:LoginComponent}
 ];
 

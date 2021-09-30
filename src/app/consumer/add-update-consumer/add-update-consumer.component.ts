@@ -24,19 +24,19 @@ export class AddUpdateConsumerComponent implements OnInit {
     agentName:""
   };
 
+  updatedConsumerData : any;
+
   constructor(private service:ConsumerService, public router: Router , public route: ActivatedRoute) { }
 
   consumer : ConsumerModel
 
   ngOnInit(): void {
-    this.getConsumer();
-    // this.route.params.forEach((params: Params) => {
-    //   this.service.getConsumerById(params['id']).subscribe(
-    //     product => this.consumer = product,
-    //   )
-    // }
-    // this.consumerModel = new this.consumerModel()
-    // )
+    this.router.getCurrentNavigation()?.extras.state;
+    // {{debugger}}
+    console.log(history.state);
+    console.log("Navigated to Update Page");
+    this.updatedConsumerData = history.state;
+    console.log(this.updatedConsumerData);
   }
 
   getConsumer()
@@ -61,11 +61,12 @@ export class AddUpdateConsumerComponent implements OnInit {
   }
 
   update_message:string ="";
-  updateConsumer(consumerId:number,consumer:ConsumerModel) : void
+  updateConsumer(consumer:ConsumerModel) : void
   {
-      this.service.updateConsumer(consumerId,consumer).subscribe(data => {
+      this.service.updateConsumer(consumer).subscribe(data => {
       this.update_message = "Updated Consumer";
       this.service.getConsumerList();
+      this.router.navigate(['/consumer'])
       console.log(data);
     })
   }

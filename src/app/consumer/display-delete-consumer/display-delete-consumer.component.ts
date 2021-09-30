@@ -56,17 +56,11 @@ export class DisplayDeleteConsumerComponent implements OnInit {
     this.router.navigate(['/addConsumer/ConsumerId/0']);
   }
 
-  editClick(consumerId:number) : void
+  editClick(consumer:ConsumerModel) : void
   {
-    // this.service.updateConsumer(consumerId,consumer)
-    // .pipe(first())
-    // .subscribe({
-    //   next: () => {
-        this.router.navigate(['/updateConsumer/',consumerId ]);
-        console.log("Update Done");
-        // cu-consumer/updateConsumer/1 UpdateConsumer?ConsumerId=1
-      // }
-    // });
-    // this.router.navigate(['/cu-consumer']);
+    // this.router.navigate(['/updateConsumer/',consumerId ]);
+    this.router.navigateByUrl('/updateConsumer/', {state: { consumer } });
+    console.log("Update Done");
+
   }
 }

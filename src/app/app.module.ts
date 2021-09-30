@@ -20,7 +20,6 @@ import { AddUpdateBusinessComponent } from './consumer-business/add-update-busin
 import { ConsumerService } from './Services/consumer.service';
 import { DisplayDeleteBusinessComponent } from './consumer-business/display-delete-business/display-delete-business.component';
 import { LoginComponent } from './login/login.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { JwtModule } from "@auth0/angular-jwt";
 import { RouterModule, Routes } from '@angular/router';
 
@@ -45,8 +44,7 @@ export function tokenGetter() {
     DisplayDeletePropertyComponent,
     AddUpdateBusinessComponent,
     DisplayDeleteBusinessComponent,
-    LoginComponent,
-    HomePageComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

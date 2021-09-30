@@ -67,61 +67,61 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
+                                    <td>13</td>
                                     <td>0</td>
                                     <td>1000</td>
                                     <td>10000</td>
                                 </tr>
                                 <tr>
-                                    <td>2</td>
+                                    <td>13</td>
                                     <td>1</td>
                                     <td>2400</td>
                                     <td>20000</td>
                                 </tr>
                                 <tr>
-                                    <td>3</td>
+                                    <td>14</td>
                                     <td>2</td>
                                     <td>4500</td>
                                     <td>30000</td>
                                 </tr>
                                 <tr>
-                                    <td>4</td>
+                                    <td>15</td>
                                     <td>3</td>
                                     <td>7200</td>
                                     <td>40000</td>
                                 </tr>
                                 <tr>
-                                    <td>5</td>
+                                    <td>16</td>
                                     <td>4</td>
                                     <td>10000</td>
                                     <td>50000</td>
                                 </tr>
                                 <tr>
-                                    <td>6</td>
+                                    <td>17</td>
                                     <td>5</td>
                                     <td>13200</td>
                                     <td>60000</td>
                                 </tr>
                                 <tr>
-                                    <td>7</td>
+                                    <td>18</td>
                                     <td>6</td>
                                     <td>17500</td>
                                     <td>70000</td>
                                 </tr>
                                 <tr>
-                                    <td>8</td>
+                                    <td>19</td>
                                     <td>7</td>
                                     <td>20000</td>
                                     <td>80000</td>
                                 </tr>
                                 <tr>
-                                    <td>9</td>
+                                    <td>20</td>
                                     <td>8</td>
                                     <td>25200</td>
                                     <td>90000</td>
                                 </tr>
                                 <tr>
-                                    <td>10</td>
+                                    <td>21</td>
                                     <td>9</td>
                                     <td>28000</td>
                                     <td>100000</td>
@@ -173,15 +173,23 @@
 
 
 
-    <div class="col-11 row mt-5" *ngIf="router.url === '/updateBusiness' && getData()">
+    <div class="col-11 row mt-5" *ngIf="router.url === '/updateBusiness/'">
         <div class="col-3 offset-5">
             <form #businessrForm="ngForm" (ngSubmit)="updateBusiness(businessrForm.value)">
                 <h3 class="input-group mb-3">Update Business</h3>
+                
+                <div class="input-group mb-3">
+                    <input type="number" #businessId="ngModel"  name="businessId" class="form-control" 
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
+                    [(ngModel)]="updatedbusinessData.business.businessId" [ngClass]="{ 'is-invalid': businessrForm.submitted && businessId.invalid }" required
+                    hidden>
+                </div>
+                
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Business Name</span>
                     <input type="text" #businessName = "ngModel" name="businessName" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="businessData.businessName" value="businessData.businessName" [ngClass]="{ 'is-invalid': businessrForm.submitted && businessName.invalid }" required>
+                    [(ngModel)]="updatedbusinessData.business.businessName" value="businessData.businessName" [ngClass]="{ 'is-invalid': businessrForm.submitted && businessName.invalid }" required>
                     <div class="invalid-feedback" *ngIf="businessrForm.submitted && businessName.invalid">
                         <p class="offset-7" *ngIf="businessName.errors?.required">Business Name is required</p>
                     </div>
@@ -191,7 +199,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Business Type</span>
                     <input type="text" #businessType = "ngModel" name="businessType" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="businessModel.businessType" [ngClass]="{ 'is-invalid': businessrForm.submitted && businessType.invalid }" required>
+                    [(ngModel)]="updatedbusinessData.business.businessType" [ngClass]="{ 'is-invalid': businessrForm.submitted && businessType.invalid }" required>
                     <div class="invalid-feedback" *ngIf="businessrForm.submitted && businessType.invalid">
                         <p class="offset-7" *ngIf="businessType.errors?.required">Business Type is required</p>
                     </div>
@@ -201,7 +209,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Total Employees</span>
                     <input type="number" #totalEmployees ="ngModel" name="totalEmployees" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="businessModel.totalEmployees" [ngClass]="{ 'is-invalid': businessrForm.submitted && totalEmployees.invalid }" required>
+                    [(ngModel)]="updatedbusinessData.business.totalEmployees" [ngClass]="{ 'is-invalid': businessrForm.submitted && totalEmployees.invalid }" required>
                     <div class="invalid-feedback" *ngIf="businessrForm.submitted && totalEmployees.invalid">
                         <p class="offset-7" *ngIf="totalEmployees.errors?.required">Total Employees is required</p>
                     </div>
@@ -211,7 +219,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Business Master Id</span>
                     <input type="number" #businessMasterId ="ngModel" name="businessMasterId" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="businessModel.businessMasterId" [ngClass]="{ 'is-invalid': businessrForm.submitted && businessMasterId.invalid }" required>
+                    [(ngModel)]="updatedbusinessData.business.businessMasterId" [ngClass]="{ 'is-invalid': businessrForm.submitted && businessMasterId.invalid }" required>
                     <div class="invalid-feedback" *ngIf="businessrForm.submitted && businessMasterId.invalid">
                         <p class="offset-7" *ngIf="businessMasterId.errors?.required">Business Master Id is required</p>
                     </div>
@@ -221,9 +229,99 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Consumer Id</span>
                     <input type="number" #consumerId ="ngModel" name="consumerId" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="businessModel.consumerId" [ngClass]="{ 'is-invalid': businessrForm.submitted && consumerId.invalid }" required>
+                    [(ngModel)]="updatedbusinessData.business.consumerId" [ngClass]="{ 'is-invalid': businessrForm.submitted && consumerId.invalid }" required>
                     <div class="invalid-feedback" *ngIf="businessrForm.submitted && businessMasterId.invalid">
                         <p class="offset-7" *ngIf="consumerId.errors?.required">Consumer Id is required</p>
+                    </div>
+                    <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
+                    data-bs-toggle="modal" data-bs-target="#myModal">R</button>
+                </div>
+    
+                <!-- Modal Content -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">Business Master Id Reference</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Business Value</th>
+                                    <th scope="col">Busienss Turn Over</th>
+                                    <th scope="col">Capital Invest</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>0</td>
+                                        <td>1000</td>
+                                        <td>10000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>1</td>
+                                        <td>2400</td>
+                                        <td>20000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td>
+                                        <td>2</td>
+                                        <td>4500</td>
+                                        <td>30000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>3</td>
+                                        <td>7200</td>
+                                        <td>40000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>16</td>
+                                        <td>4</td>
+                                        <td>10000</td>
+                                        <td>50000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>17</td>
+                                        <td>5</td>
+                                        <td>13200</td>
+                                        <td>60000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>18</td>
+                                        <td>6</td>
+                                        <td>17500</td>
+                                        <td>70000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>19</td>
+                                        <td>7</td>
+                                        <td>20000</td>
+                                        <td>80000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20</td>
+                                        <td>8</td>
+                                        <td>25200</td>
+                                        <td>90000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>21</td>
+                                        <td>9</td>
+                                        <td>28000</td>
+                                        <td>100000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <br>
@@ -233,6 +331,3 @@
             <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
         </div>
         </div>
-
-
-        <!--  -->

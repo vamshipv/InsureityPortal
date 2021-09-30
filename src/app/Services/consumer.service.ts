@@ -29,9 +29,9 @@ export class ConsumerService {
     });
   }
 
-  updateConsumer(consumerId:number ,consumer:ConsumerModel){
+  updateConsumer(consumer:ConsumerModel){
     console.log(consumer);
-    return this.http.put(this.ApiURL+'/UpdateConsumer?ConsumerId='+consumerId,consumer,
+    return this.http.put(this.ApiURL+'/UpdateConsumer?ConsumerId='+consumer.consumerId,consumer,
     {
       headers:new HttpHeaders({
         'Content-Type':'application/json;charset=UTF-8',
