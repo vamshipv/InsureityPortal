@@ -18,7 +18,7 @@ export class PolicyService {
 //     this.router.navigate([uri]));
 //  }
 
-  readonly baseURL = 'https://localhost:5001/api/Policy';
+  readonly baseURL = 'https://localhost:44366/api/Policy';
 
   listOfPolicies():Observable<Policy[]>{
     return this.http.get<Policy[]>(this.baseURL + '/ViewPolicies');
