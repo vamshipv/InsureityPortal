@@ -16,16 +16,37 @@ export class IssuePolicyComponent implements OnInit {
 
   policyStatus:string = 'Policy Status is displayed here';
   policies:Policy[];
-  issueform:IssuePolicyForm = new IssuePolicyForm();
+  issueForm:IssuePolicyForm = new IssuePolicyForm();
+  consumerName : string;
+  policyPgNo:number = 1;
 
   constructor(private service:PolicyService) { }
 
   ngOnInit(): void {
-    this.listOfPolicies();
+    this.getPolicies();
   }
 
-  listOfPolicies(){
-    this.service.listOfPolicies().subscribe(
+  searchPolicy(){
+    if(this.consumerName == ""){
+      this.ngOnInit();
+    }
+    else{
+      this.policies = this.policies.filter(p => {
+        return p.consumerName.toLocaleLowerCase().match(this.consumerName.toLocaleLowerCase());
+      });
+    }
+  }
+
+  key:string = '';
+  reverse:boolean = false;
+  sort(key:string){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+
+  getPolicies(){
+    this.service.getPolicies().subscribe(
       data => {
         this.policies = data;
       },
@@ -40,7 +61,7 @@ export class IssuePolicyComponent implements OnInit {
     this.service.issuePolicy(param).subscribe(
       data => {
         // this.service.redirectTo("issuepolicy");
-        this.listOfPolicies();
+        this.getPolicies();
         this.policyStatus = data;
       },
       err => {

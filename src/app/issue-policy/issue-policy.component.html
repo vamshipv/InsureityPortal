@@ -6,28 +6,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <form #issuepolicyform="ngForm" (ngSubmit)="issuepolicyform.form.valid && 
+                <form #issuePolicyForm="ngForm" (ngSubmit)="issuePolicyForm.form.valid && 
                 issuePolicy(policyid.value, paymentdetail.value)">
                         <div class="form-group">
                             <label for="policyid"> Enter Policy ID:</label>
-                            <input class="form-control form-control-sm" type="number" [(ngModel)]="issueform.policyid" 
+                            <input class="form-control form-control-sm" type="number" [(ngModel)]="issueForm.policyid" 
                             placeholder="Enter Policy ID here" name="policyid" id="policyid" #policyid="ngModel"
-                            [ngClass]="{ 'is-invalid': issuepolicyform.submitted && policyid.invalid }" required />
-                            <div class="invalid-feedback" *ngIf="issuepolicyform.submitted && policyid.invalid">
+                            [ngClass]="{ 'is-invalid': issuePolicyForm.submitted && policyid.invalid }" required />
+                            <div class="invalid-feedback" *ngIf="issuePolicyForm.submitted && policyid.invalid">
                                 <p *ngIf="policyid.errors?.required">Policy ID is required</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="paymentdetail"> Payment Details :</label>   
-                            <input class="form-control form-control-sm" type="text" [(ngModel)]="issueform.paymentdetail"
+                            <input class="form-control form-control-sm" type="text" [(ngModel)]="issueForm.paymentdetail"
                             placeholder="Enter Payment Details here" id="paymentdetail" name="paymentdetail" #paymentdetail="ngModel"
-                            [ngClass]="{ 'is-invalid': issuepolicyform.submitted && paymentdetail.invalid }" required/>
-                            <div class="invalid-feedback" *ngIf="issuepolicyform.submitted && paymentdetail.invalid">
+                            [ngClass]="{ 'is-invalid': issuePolicyForm.submitted && paymentdetail.invalid }" required/>
+                            <div class="invalid-feedback" *ngIf="issuePolicyForm.submitted && paymentdetail.invalid">
                                 <p *ngIf="paymentdetail.errors?.required">Payment Detail is required</p>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-md btn-success" type="submit" [disabled]="issuepolicyform.form.invalid">
+                            <button class="btn btn-md btn-success" type="submit" [disabled]="issuePolicyForm.form.invalid">
                                 Issue Policy
                             </button>
                             &nbsp;
@@ -39,37 +39,68 @@
             </div>
             <div class="col-md-6">
                 <h3>Policy Status : </h3> 
-                <div class="alert alert-success" *ngIf="policyStatus=='Policy has been Issued for Policy ID ' + policyid.value;
-                else policy_not_created" #policy_created>
-                    {{ policyStatus }}
+                <div class="alert alert-success" *ngIf="policyStatus=='Policy has been Issued for Policy ID '
+                 + policyid.value; else policy_not_created" #policy_created>
+                    <h3>
+                        {{ policyStatus }}
+                    </h3>
                 </div>
                 <ng-template #policy_not_created>
                     <div class="alert alert-danger">
-                        {{ policyStatus }}
+                        <h3>
+                            {{ policyStatus }}
+                        </h3>
                     </div>
                 </ng-template>
             </div>
         </div>
         <hr>
+        
         <div class="row">
-            <h3>List of Policies</h3>
+            <h3>Policies</h3>
+            <nav class="navbar">
+                <input type="text" class="form-control" name="consumerName" [(ngModel)]="consumerName" 
+                (ngModelChange)="searchPolicy()" placeholder="Enter Consumer Name to search policies">
+            </nav>
             <table class="table">
                 <thead>
                     <tr class="table-active text-center table-dark">
-                        <th scope="col">Policy ID</th>
-                        <th scope="col">Building Type</th>
-                        <th scope="col">Policy Status</th>
-                        <th scope="col">Property ID</th>
-                        <th scope="col">Property Type</th>
-                        <th scope="col">Property Value</th>
-                        <th scope="col">Business Value</th>
-                        <th scope="col">Quote Value</th>
-                        <th scope="col">Consumer ID</th>
-                        <th scope="col">Consumer Name</th>
+                        <th scope="col" (click)="sort('policyId')">
+                            Policy ID <i class="fa fa-sort"></i> 
+                        </th>
+                        <th scope="col" (click)="sort('buildingType')">
+                            Building Type <i class="fa fa-sort"></i> 
+                        </th>
+                        <th scope="col" (click)="sort('policyStatus')">
+                            Policy Status <i class="fa fa-sort"></i> 
+                        </th>
+                        <th scope="col" (click)="sort('propertyId')">
+                            Property ID <i class="fa fa-sort"></i> 
+                        </th>
+                        <th scope="col" (click)="sort('propertyType')">
+                            Property Type <i class="fa fa-sort"></i> 
+                        </th>
+                        <th scope="col" (click)="sort('propertyValue')">
+                            Property Value <i class="fa fa-sort"></i> 
+                        </th>
+                        <th scope="col" (click)="sort('businessValue')">
+                            Business Value <i class="fa fa-sort"></i> 
+                        </th>
+                        <th scope="col" (click)="sort('quoteValue')">
+                            Quote Value <i class="fa fa-sort"></i> 
+                        </th>
+                        <th scope="col" (click)="sort('consumerId')">
+                            Consumer ID <i class="fa fa-sort"></i> 
+                        </th>
+                        <th scope="col" (click)="sort('consumerName')">
+                            Consumer Name <i class="fa fa-sort"></i> 
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="text-center table-secondary" *ngFor="let policy of policies">
+                    <tr class="text-center table-secondary" 
+                    *ngFor="let policy of policies | orderBy: key: reverse | 
+                    paginate: {itemsPerPage: 5, currentPage: policyPgNo}; ">
                         <td>{{ policy.policyId }}</td>
                         <td>{{ policy.buildingType }}</td>
                         <td>{{ policy.policyStatus }}</td>
@@ -83,6 +114,7 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls (pageChange)="policyPgNo = $event"></pagination-controls>
         </div>
     </div>
 </div>

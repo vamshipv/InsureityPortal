@@ -5,7 +5,7 @@
 <div class="row">
   <!-- <h3 class="col-5 offset-2">List of Business Property</h3> -->
     <div class="col-5 offset-9">
-        <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Property</button>
+        <button type="button" class="btn btn-success float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Property</button>
         <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="editClick()">Edit Consumer</button>  -->
         <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="deleteClick()">Delete Consumer</button>  -->
     </div>
@@ -16,7 +16,7 @@
 
   <table class="table">
     <thead class="thead-dark">
-      <tr class="table-active table-dark">
+      <tr class="table-active text-center table-dark">
         <th scope="col">Building Type</th>
         <th scope="col">Building Storeys</th>
         <th scope="col">Building Age</th>
@@ -29,7 +29,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of propertyList">
+      <tr *ngFor="let data of propertyList 
+      | paginate: {itemsPerPage: 5, currentPage: businessPropertyPgNo};" class ="text-center">
         <td scope="row">{{data.buildingType}}</td>
         <td scope="row">{{data.buildingStoreys}}</td>
         <td scope="row">{{data.buildingAge}}</td>
@@ -44,5 +45,6 @@
       </tr>
     </tbody>
   </table>
+  <pagination-controls (pageChange)="businessPropertyPgNo = $event"></pagination-controls>
   </div>
   </div>

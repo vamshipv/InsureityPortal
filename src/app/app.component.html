@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       {{ title }}
@@ -12,19 +12,19 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul *ngIf="isUserAuthenticated()" class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <ul *ngIf="isUserAuthenticated()" class="navbar-nav justify-content-end flex-grow-1 pe-3"> -->
         <!--flex-grow-1 pe-3"-->
-          <br>
+          <!-- <br>
           <li class="nav-item">
-            <button routerLink="consumer" class="m-1 btn btn-light btn-outline-secondary" Button>Create Consumer</button>
+            <button routerLink="consumer" class="m-1 btn btn-light btn-outline-secondary" Button>Consumer</button>
           </li>
           <br>
           <li class="nav-item">
-            <button routerLink="consumerBusiness" class="m-1 btn btn-light btn-outline-secondary" Button>Add Business</button>
+            <button routerLink="consumerBusiness" class="m-1 btn btn-light btn-outline-secondary" Button>Business</button>
           </li>
           <br>
           <li class="nav-item">
-            <button routerLink="businessProperty" class="m-1 btn btn-light btn-outline-secondary" Button>Add Property</button>
+            <button routerLink="businessProperty" class="m-1 btn btn-light btn-outline-secondary" Button>Property</button>
           </li>
           <br>
           <li class="nav-item">
@@ -44,11 +44,8 @@
           </li>
           <br>
         </ul>
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <!-- <li *ngIf="!isUserAuthenticated()" class="nav-item">
-            <button routerLink="login" class="m-1 btn btn-light btn-outline-secondary" Button>Login</button>
-          </li> -->
-          <li *ngIf="isUserAuthenticated()" class="nav-item">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3"> -->
+          <!-- <li *ngIf="isUserAuthenticated()" class="nav-item">
             <button (click)="logOut()" class="logout m-1 btn btn-light btn-outline-secondary" Button>Log Out</button>
           </li>
         </ul>      
@@ -60,6 +57,141 @@
   <div *ngIf ="!isUserAuthenticated()">
     <app-login></app-login>
   </div>
-
+<h3 *ngIf ="isUserAuthenticated()">
+  Welcome Person1
+</h3>
   <router-outlet> </router-outlet>
-</div>
+</div> -->
+    <!-- Header Area wrapper Starts -->
+    <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">
+      <div class="container-fluid">
+        <nav
+          class="
+            navbar
+            navbar-expand-lg
+            flex
+            justify-between
+            items-center
+            relative
+            duration-300
+          "
+        >
+          <a class="navbar-brand" href="index.html">
+            <img src="assets/img/Insureity_Portal-removebg-preview.png" width="350px" alt="Logo" />
+          </a>
+          <!-- <button class="navbar-toggler focus:outline-none block lg:hidden">
+            <span
+              class="
+                toggler-icon
+                block
+                bg-gray-700
+                relative
+                duration-300
+                h-[2px]
+                w-[30px]
+                my-[6px]
+              "
+            >
+            </span>
+            <span
+              class="
+                toggler-icon
+                block
+                bg-gray-700
+                relative
+                duration-300
+                h-[2px]
+                w-[30px]
+                my-[6px]
+              "
+            >
+            </span>
+            <span
+              class="
+                toggler-icon
+                block
+                bg-gray-700
+                relative
+                duration-300
+                h-[2px]
+                w-[30px]
+                my-[6px]
+              "
+            >
+            </span>
+          </button> -->
+
+          <!-- <div *ngIf="isUserAuthenticated()" 
+            class="
+              collapse
+              navbar-collapse
+              hidden
+              lg:block
+              duration-300
+              shadow
+              absolute
+              top-full
+              left-0
+              mt-full
+              bg-white
+              z-20
+              px-5
+              py-3
+              w-full
+              lg:static lg:bg-transparent lg:shadow-none
+            "
+
+            id="navbarSupportedContent"
+          > -->
+          <div class="container-fluid rounded navbar col-8">
+            <ul *ngIf="isUserAuthenticated()"  class="navbar-nav justify-content-between w-full 
+            items-center shadow lg:flex">
+              <!--flex-grow-1 pe-3"-->
+                <br>
+                <li class="nav-item">
+                  <button routerLink="consumer" class="nav-link">Consumer</button>
+                </li>
+                <br>
+                <li class="nav-item">
+                  <button routerLink="consumerBusiness" class="nav-link active" aria-current="page">Business</button>
+                </li>
+                <br>
+                <li class="nav-item">
+                  <button routerLink="businessProperty" class="nav-link active" aria-current="page">Property</button>
+                </li>
+                <br>
+                <li class="nav-item">
+                  <button routerLink="createPolicy" class="nav-link active" aria-current="page">Create Policy</button>
+                </li>
+                <br>
+                <li class="nav-item">
+                  <button routerLink="issuePolicy" class="nav-link active" aria-current="page">Issue Policy</button>
+                </li>
+                <br>
+                <li class="nav-item">
+                  <button routerLink="viewPolicy" class="nav-link active" aria-current="page">View Policy</button>
+                </li>
+                <br>
+                <li class="nav-item">
+                  <button routerLink="getQuote" class="nav-link active" aria-current="page">Get Quote</button>
+                </li>
+                <br>
+              </ul>
+          </div>
+          <div
+            class="
+              navbar">
+              <button 
+                  *ngIf="isUserAuthenticated()" class="nav-item" (click)="logOut()" 
+                  class="logout m-1 btn btn-debug btn-outline-primary" >LogOut</button> 
+          </div>
+        </nav>
+      </div>
+    </div>
+<br><br><br><br>
+<br><br>
+<hr>
+<router-outlet> </router-outlet>
+
+
+    

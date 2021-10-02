@@ -9,7 +9,7 @@
             createPolicy(propertyid.value)">
                 <div class="form-group">
                     <label for="propertyid"> Enter Property ID:</label>
-                    <input class="form-control form-control-sm" type="number" [(ngModel)]="createpolicyform.propertyid" 
+                    <input class="form-control form-control-md" type="number" [(ngModel)]="createPolicyForm.propertyid" 
                     placeholder="Property ID" id="propertyid" name="propertyid" #propertyid="ngModel"
                     [ngClass]="{ 'is-invalid': policyform.submitted && propertyid.invalid }" required/>
                 </div>
@@ -29,66 +29,67 @@
             <h3>Policy Status : </h3> 
             <div class="alert alert-success" *ngIf="checkPolicyStatus(policyStatus); else policy_not_created" 
             #policy_created>
-                {{ policyStatus }}
+                <h3>
+                    {{ policyStatus }}
+                </h3>
             </div>
             <ng-template #policy_not_created>
                 <div class="alert alert-danger">
-                    {{ policyStatus }}
+                    <h3>
+                        {{ policyStatus }}
+                    </h3>
                 </div>
             </ng-template>
         </div>
     </div>
     <hr>
+    
     <div class="row">
-        <h3>List of Properties</h3>
+        <nav class="navbar">
+            <input type="text" class="form-control col-sm-8" name="consumerName" [(ngModel)]="consumerName" 
+            (ngModelChange)="searchPolicyProperty()" 
+            placeholder="Enter Consumer Name to search policies and properties">
+        </nav>
+        <h3>Policies</h3>
         <table class="table">
             <thead>
                 <tr class="table-active text-center table-dark">
-                    <th scope="col">Property Id</th>
-                    <th scope="col">Building Type</th>
-                    <th scope="col">Building Age</th>
-                    <th scope="col">Building Storeys</th>
-                    <th scope="col">Property Value</th>
-                    <th scope="col">Business Id</th>
-                    <th scope="col">Business Value</th>
-                    <th scope="col">Consumer Id</th>
-                    <th scope="col">Consumer Name</th>
+                    <th scope="col" (click)="sort('policyId')">
+                        Policy ID <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('buildingType')">
+                        Building Type <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('policyStatus')">
+                        Policy Status <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('propertyId')">
+                        Property ID <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('propertyType')">
+                        Property Type <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('propertyValue')">
+                        Property Value <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('businessValue')">
+                        Business Value <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('quoteValue')">
+                        Quote Value <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('consumerId')">
+                        Consumer ID <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('consumerName')">
+                        Consumer Name <i class="fa fa-sort"></i> 
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center table-secondary" *ngFor="let property of properties">
-                    <td>{{ property.propertyId }}</td>
-                    <td>{{ property.buildingType }}</td>
-                    <td>{{ property.buildingAge }}</td>
-                    <td>{{ property.buildingStoreys }}</td>
-                    <td>{{ property.propertyValue }}</td>
-                    <td>{{ property.businessId }}</td>
-                    <td>{{ property.businessValue }}</td>
-                    <td>{{ property.consumerId }}</td>
-                    <td>{{ property.consumerName }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="row">
-        <h3>List of Policies</h3>
-        <table class="table">
-            <thead>
-                <tr class="table-active text-center table-dark">
-                    <th scope="col">Policy ID</th>
-                    <th scope="col">Building Type</th>
-                    <th scope="col">Policy Status</th>
-                    <th scope="col">Property ID</th>
-                    <th scope="col">Property Type</th>
-                    <th scope="col">Property Value</th>
-                    <th scope="col">Business Value</th>
-                    <th scope="col">Quote Value</th>
-                    <th scope="col">Consumer ID</th>
-                    <th scope="col">Consumer Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="text-center table-secondary" *ngFor="let policy of policies">
+                <tr class="text-center table-secondary" 
+                *ngFor="let policy of policies | orderBy: key: reverse
+                paginate: {itemsPerPage: 5, currentPage: policyPgNo}; ">
                     <td>{{ policy.policyId }}</td>
                     <td>{{ policy.buildingType }}</td>
                     <td>{{ policy.policyStatus }}</td>
@@ -102,5 +103,60 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls (pageChange)="policyPgNo = $event"></pagination-controls>
     </div>
+
+    <div class="row">
+        <h3>Properties</h3>
+        <table class="table">
+            <thead>
+                <tr class="table-active text-center table-dark">
+                    <th scope="col" (click)="sort('propertyId')">
+                        Property Id <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('buildingType')">
+                        Building Type <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('buildingAge')">
+                        Building Age <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('buildingStoreys')">
+                        Building Storeys <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('propertyValue')">
+                        Property Value <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('businessId')">
+                        Business Id <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('businessValue')">
+                        Business Value <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('consumerId')">
+                        Consumer Id <i class="fa fa-sort"></i> 
+                    </th>
+                    <th scope="col" (click)="sort('consumerName')">
+                        Consumer Name <i class="fa fa-sort"></i> 
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center table-secondary" 
+                *ngFor="let property of properties | orderBy: key: reverse
+                paginate: {itemsPerPage: 5, currentPage: propertyPgNo}; ">
+                    <td>{{ property.propertyId }}</td>
+                    <td>{{ property.buildingType }}</td>
+                    <td>{{ property.buildingAge }}</td>
+                    <td>{{ property.buildingStoreys }}</td>
+                    <td>{{ property.propertyValue }}</td>
+                    <td>{{ property.businessId }}</td>
+                    <td>{{ property.businessValue }}</td>
+                    <td>{{ property.consumerId }}</td>
+                    <td>{{ property.consumerName }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="propertyPgNo = $event"></pagination-controls>
+    </div>
+
 </div>

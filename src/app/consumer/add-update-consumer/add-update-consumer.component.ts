@@ -4,6 +4,7 @@ import { ConsumerModel } from 'src/app/Models/consumer.model';
 import { Params, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-update-consumer',
@@ -17,13 +18,19 @@ export class AddUpdateConsumerComponent implements OnInit {
   consumerModel:ConsumerModel ={
     consumerId:0,
     name:"",
-    dob:"",
+    dateOfBirth: new Date,
     email:"",
     panNumber:"",
     agentId:0,
     agentName:""
   };
 
+  agentNameForDropDown = [
+    {id: 1, agentNameDrop:"Ravi"},
+    {id: 2 , agentNameDrop:"Suresh"}
+  ];
+  selectedAgentName = null;
+  
   updatedConsumerData : any;
 
   constructor(private service:ConsumerService, public router: Router , public route: ActivatedRoute) { }
@@ -36,6 +43,7 @@ export class AddUpdateConsumerComponent implements OnInit {
     console.log(history.state);
     console.log("Navigated to Update Page");
     this.updatedConsumerData = history.state;
+    // this.updatedConsumerData.dob = this.updatedConsumerData.dob.Date();
     console.log(this.updatedConsumerData);
   }
 

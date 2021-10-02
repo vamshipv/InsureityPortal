@@ -13,18 +13,13 @@ export class PolicyService {
 
   constructor(private http:HttpClient, private router:Router) { }
 
-//   redirectTo(uri:string){
-//     this.router.navigateByUrl('/' + uri, {skipLocationChange: true}).then(()=>
-//     this.router.navigate([uri]));
-//  }
-
   readonly baseURL = 'https://localhost:44366/api/Policy';
 
-  listOfPolicies():Observable<Policy[]>{
-    return this.http.get<Policy[]>(this.baseURL + '/ViewPolicies');
+  getPolicies():Observable<Policy[]>{
+    return this.http.get<Policy[]>(this.baseURL + '/ViewPolicies');  // GetPolicies
   }
 
-  listOfProperties():Observable<Property[]>{
+  getProperties():Observable<Property[]>{
     return this.http.get<Property[]>(this.baseURL + '/ViewProperties');
   }
 

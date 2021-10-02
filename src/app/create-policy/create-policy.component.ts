@@ -17,21 +17,45 @@ export class CreatePolicyComponent implements OnInit {
   policyStatus:string = 'Policy Status is displayed here';
   policies:Policy[];
   properties:Property[];
-  createpolicyform:CreatePolicy = new CreatePolicy();
+  createPolicyForm:CreatePolicy = new CreatePolicy();
+  consumerName : string;
+  key:string = '';
+  reverse:boolean = false;
+  policyPgNo:number = 1;
+  propertyPgNo:number = 1;
 
   constructor(public service:PolicyService) { }
 
   ngOnInit(): void {
-    this.listOfProperties();
-    this.listOfPolicies();
+    this.getProperties();
+    this.getPolicies();
+  }
+
+  searchPolicyProperty(){
+    if(this.consumerName == ""){
+      this.ngOnInit()
+    }
+    else{
+      this.policies = this.policies.filter(p => {
+        return p.consumerName.toLocaleLowerCase().match(this.consumerName.toLocaleLowerCase());
+      });
+      this.properties = this.properties.filter(p => {
+        return p.consumerName.toLocaleLowerCase().match(this.consumerName.toLocaleLowerCase());
+      });
+    }
+  }
+
+  sort(key:string){
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 
   checkPolicyStatus(myPolicyStatus:string):boolean{
     return myPolicyStatus === "Policy has been created with Policy Status \'Initiated\'";
   }
 
-  listOfProperties(){
-    this.service.listOfProperties().subscribe(
+  getProperties(){
+    this.service.getProperties().subscribe(
       data => {
         this.properties = data;
       },
@@ -41,8 +65,8 @@ export class CreatePolicyComponent implements OnInit {
     );
   }
 
-  listOfPolicies(){
-    this.service.listOfPolicies().subscribe(
+  getPolicies(){
+    this.service.getPolicies().subscribe(
       data => {
         this.policies = data;
       },
@@ -55,8 +79,8 @@ export class CreatePolicyComponent implements OnInit {
   createPolicy(pstatus:string){  //param : {
     this.service.createPolicy(pstatus).subscribe(
       data => {
-        this.listOfPolicies();
-        this.listOfProperties();
+        this.getPolicies();
+        this.getProperties();
         this.policyStatus = data;
       },
       err => {

@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+/* apply css classes */
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #dbeafe;
+}

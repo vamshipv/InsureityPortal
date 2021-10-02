@@ -18,7 +18,7 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Date Of Birth</span>
                 <input type="date" #dob = "ngModel" name="dob" class="form-control" aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-default" 
-                [(ngModel)]="consumerModel.dob" [ngClass]="{ 'is-invalid': consumerForm.submitted && dob.invalid }" required>
+                [(ngModel)]="consumerModel.dateOfBirth" [ngClass]="{ 'is-invalid': consumerForm.submitted && dob.invalid }" required>
                 <div class="invalid-feedback" *ngIf="consumerForm.submitted && dob.invalid">
                     <p class="offset-7" *ngIf="dob.errors?.required">Dabe of Birth is required</p>
                 </div>
@@ -46,7 +46,7 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Agent Id</span>
-                <input type="text" #agentId = "ngModel" name="agentId" class="form-control" aria-label="Sizing example input" 
+                <input type="number" #agentId = "ngModel" name="agentId" class="form-control" aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-default" 
                 [(ngModel)]="consumerModel.agentId" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentId.invalid }" required>
                 <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentId.invalid">
@@ -56,24 +56,46 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
-                <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
+                <!-- <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-default" 
-                [(ngModel)]="consumerModel.agentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required>
-                <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
+                [(ngModel)]="consumerModel.agentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required> 
+                <<div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
                     <p class="offset-7" *ngIf="agentName.errors?.required">Agent Name id required</p>
-                </div>
+                </div> -->
+                <!-- //TODO Error in Consile -->
+                <select class="form-select" [(ngModel)] = "selectedAgentName" name ="agentName">
+                    <option value ="" disabled selected>Select</option>
+                    <option *ngFor="let agent of agentNameForDropDown" #agentName ="ngModel" name ="agent" [(ngModel)]="agent.agentNameDrop" ngDefaultControl 
+                    [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required> 
+                    {{agent.agentNameDrop}}</option>
+                </select>
             </div>
 
             <br>
-            <input type="submit" class="btn btn-outline-danger" value="Create">
+            <input type="submit" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Create">
+            <div class="alert alert-success" *ngIf="create_message">{{create_message}} 
+            </div>
             <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
+            <div *ngIf="consumerForm.submitted" class="modal fade" id="exampleModal" tabindex="-1" 
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Consumer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    New Consumer is Added
+                    </div>
+                    <div class="modal-footer">
+                    <a routerLink ='/consumer' type="button" class="btn btn-primary"> Back To Consumer List</a>
+                    </div>
+                </div>
+                </div>
+            </div>
         </form>
         <br>
-        <div class="alert alert-success" *ngIf="create_message">{{create_message}} 
-            <!-- <button class="btn btn-outline-dark"  routerLink = "/addBusiness/BussinessId/">Continue to Add Business</button> -->
-        </div>
-        <!-- <div *ngIf="create_message">
-            
+        <!-- <div class="alert alert-success" *ngIf="create_message">{{create_message}} 
         </div> -->
     </div>
     </div>
@@ -109,7 +131,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Date Of Birth</span>
                     <input type="date" #dob = "ngModel" name="dob" class="form-control" aria-label="Sizing example input" 
                     aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="updatedConsumerData.consumer.dob" [ngClass]="{ 'is-invalid': consumerForm.submitted && dob.invalid }" required>
+                    [(ngModel)]="updatedConsumerData.consumer.dateOfBirth" [ngClass]="{ 'is-invalid': consumerForm.submitted && dob.invalid }" required>
                     <div class="invalid-feedback" *ngIf="consumerForm.submitted && dob.invalid">
                         <p class="offset-7" *ngIf="dob.errors?.required">Dabe of Birth is required</p>
                     </div>
@@ -160,4 +182,5 @@
             </form>
             <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
         </div>
+        {{updatedConsumerData | json}}
         </div>

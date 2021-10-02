@@ -17,6 +17,7 @@ import { GetQuoteComponent } from './get-quote/get-quote.component';
 import { IssuePolicyComponent } from './issue-policy/issue-policy.component';
 import { ViewPolicyComponent } from './view-policy/view-policy.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,8 @@ const routes: Routes = [
   {path:'issuePolicy',component:IssuePolicyComponent},
   {path:'viewPolicy',component:ViewPolicyComponent},
   {path:'getQuote',component:GetQuoteComponent},
-  {path:'login',component:LoginComponent}
+  {path:'login',component:LoginComponent},
+  {path:'',component:HomeComponent}
 ];
 
 @NgModule({

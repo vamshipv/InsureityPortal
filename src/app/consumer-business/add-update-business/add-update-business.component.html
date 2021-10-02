@@ -58,6 +58,7 @@
                     <div class="modal-body">
                         <table class="table">
                             <thead>
+                                <!-- //TODO -->
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Business Value</th>
@@ -146,19 +147,6 @@
                     <p class="offset-6" *ngIf="consumerId.errors?.required">Consumer Id is required</p>
                 </div>
             </div>
-
-            <!-- <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Business Value</span>
-                <input type="number" id="businessValue" name="businessValue" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="businessModel.businessMaster.businessValue">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Business TurnOver</span>
-                <input type="number" id="businessTurnOver" name="businessTurnOver" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="businessModel.businessMaster.businessTurnOver">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Capital Invest</span>
-                <input type="number" id="capitalInvest" name="capitalInvest" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="businessModel.businessMaster.capitalInvest">
-            </div> -->
             <br>
             <input type="submit" class="btn btn-outline-danger" value="Create">
             <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">

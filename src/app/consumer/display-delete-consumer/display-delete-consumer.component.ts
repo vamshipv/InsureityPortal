@@ -12,11 +12,11 @@ import { first } from 'rxjs/operators';
 export class DisplayDeleteConsumerComponent implements OnInit {
 
   ConsumerList:ConsumerModel[] = [];
-
+  deleteConsumerId = 0;
   consumerModel:ConsumerModel ={
     consumerId:0,
     name:"",
-    dob:"",
+    dateOfBirth: new Date,
     email:"",
     panNumber:"",
     agentId:0,
@@ -24,10 +24,23 @@ export class DisplayDeleteConsumerComponent implements OnInit {
   };
 
   consumer_Id : number = 0;
+  consumerPgNo:number = 1;
+  name:string;
   constructor(private service:ConsumerService, public router: Router) { }
 
   ngOnInit(): void {
     this.getConsumer();
+  }
+
+  searchConsumer(){
+    if(this.name == ""){
+      this.ngOnInit()
+    }
+    else{
+      this.ConsumerList = this.ConsumerList.filter(p => {
+        return p.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      });
+    }
   }
 
   getConsumer()
@@ -41,14 +54,16 @@ export class DisplayDeleteConsumerComponent implements OnInit {
   delete_message:string="";
   deleteConsumer(consumerId:number) : void
   {
-    //debugger;
-    this.service.deleteConsumer(consumerId).subscribe(data =>
+      debugger;
+      this.service.deleteConsumer(consumerId).subscribe(data =>
       {
-        alert("Consumer ID" +  " " + consumerId.toString()+ " " + "Deleted")
+        // alert("Consumer ID" +  " " + consumerId.toString()+ " " + "Deleted")
+        this.router
         this.service.getConsumerList();
         this.delete_message = "Deleted Consumer" + consumerId;
         console.log(data);
       })
+    //debugger;
   }
 
   addClick()

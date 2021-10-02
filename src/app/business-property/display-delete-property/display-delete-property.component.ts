@@ -30,6 +30,7 @@ export class DisplayDeletePropertyComponent implements OnInit {
   };
 
   property_Id : number = 0;
+  businessPropertyPgNo:number = 1;
   constructor(private service:BusinessPropertyService, public router: Router) { }
 
   ngOnInit(): void {

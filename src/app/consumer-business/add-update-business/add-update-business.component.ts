@@ -58,6 +58,7 @@ export class AddUpdateBusinessComponent implements OnInit {
       {
       this.create_message="Consumer Business was Added";
       this.service.getBusinessList();
+      this.router.navigate(['/consumerBusiness']);
       console.log(data);
       },
     err => {console.log(err);}

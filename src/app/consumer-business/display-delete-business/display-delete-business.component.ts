@@ -28,6 +28,8 @@ export class DisplayDeleteBusinessComponent implements OnInit {
     }
   };
 
+  BusinessName:string;
+  businessPgNo:number = 1;
 
   constructor(private service:ConsumerBusinessService, public router: Router) { }
 
@@ -35,6 +37,17 @@ export class DisplayDeleteBusinessComponent implements OnInit {
     this.getBusiness();
   }
 
+  
+  searchBusiness(){
+    if(this.BusinessName == ""){
+      this.ngOnInit()
+    }
+    else{
+      this.businessList = this.businessList.filter(b => {
+        return b.businessName.toLocaleLowerCase().match(this.BusinessName.toLocaleLowerCase());
+      });
+    }
+  }
 
   getBusiness()
   {

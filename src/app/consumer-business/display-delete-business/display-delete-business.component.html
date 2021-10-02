@@ -4,18 +4,24 @@
 <hr>
 <div class="row">
   <!-- <h3 class="col-5 offset-2">List of Consumer Business</h3> -->
-  <div class="col-5 offset-9">
-      <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Business</button>
+  <div class="form-group col-md-7 offset-sm-2">
+    <input type="text" class="form-control" name="businessName" [(ngModel)]="BusinessName" 
+    (ngModelChange)="searchBusiness()" 
+    placeholder="Enter Business Name to search businesses">
+  </div>
+  <div class="col ">
+      <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Business</button>
       <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="editClick()">Edit Consumer</button>  -->
       <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="deleteClick()">Delete Consumer</button>  -->
   </div>
-  <br>
+<br>
+<br>
 </div>
 <div class="row justify-content-center">
 <div class="col-8">
-<table class="table">
-  <thead>
-    <tr class="table-active text-center table-dark">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr class="table-active text-center table-dark">
       <th scope="col">Business Name</th>
       <th scope="col">Business Type</th>
       <th scope="col">Total Employees</th>
@@ -27,7 +33,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of businessList">
+    <tr *ngFor="let data of businessList | paginate: {itemsPerPage: 7, currentPage: businessPgNo}; " 
+    class="text-center">
         <td>{{data.businessName}}</td>
         <td>{{data.businessType}}</td>
         <td>{{data.totalEmployees}}</td>
@@ -42,5 +49,6 @@
     </tr>
   </tbody>
 </table>
+<pagination-controls (pageChange)="businessPgNo = $event"></pagination-controls>
 </div>
 </div>
