@@ -25,6 +25,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HomeComponent } from './home/home.component';
+import { DatePipe } from '@angular/common';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -67,7 +68,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [ConsumerService],
+  providers: [ConsumerService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

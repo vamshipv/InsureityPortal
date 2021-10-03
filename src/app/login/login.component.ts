@@ -12,13 +12,12 @@ export class LoginComponent {
 
   invalidLogin: boolean;
   username: string;
-
+  
   constructor(private router: Router, private http: HttpClient) { }
 
   public login = (form: NgForm) => {
     const credentials = JSON.stringify(form.value);
-    //debugger;
-    this.http.post("https://localhost:44354/api/auth/login", credentials, {
+    this.http.post("https://localhost:44354/api/Auth/login", credentials, {
       headers: new HttpHeaders({
         'Content-Type':'application/json;charset=UTF-8',
         'Access-Control-Allow-Origin':'*',

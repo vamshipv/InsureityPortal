@@ -28,6 +28,7 @@ export class DisplayDeleteBusinessComponent implements OnInit {
     }
   };
 
+  deleteBusinessId = 0;
   BusinessName:string;
   businessPgNo:number = 1;
 
@@ -62,7 +63,7 @@ export class DisplayDeleteBusinessComponent implements OnInit {
   {
     this.service.deleteBusiness(businessId).subscribe(data =>
       {
-        alert("Business ID" +  " " + businessId.toString()+ " " + "Deleted")
+        //alert("Business ID" +  " " + businessId.toString()+ " " + "Deleted")
         this.service.getBusinessList();
         this.delete_mesaage = "Deleted Business" + businessId;
         console.log(data);

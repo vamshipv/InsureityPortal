@@ -5,7 +5,7 @@
 <div class="row">
   <!-- <h3 class="col-5 offset-2">List of Consumers</h3> -->
   <div class="form-group col-md-7 offset-sm-2">
-    <input type="text" class="form-control" name="name" [(ngModel)]="name" 
+    <input type="text" class="form-control" name="name" [(ngModel)]="consumerName" 
     (ngModelChange)="searchConsumer()" 
     placeholder="Enter Consumer Name to search consumers">
   </div>
@@ -27,7 +27,7 @@
       <th>Date Of Birth</th>
       <th>Email</th>
       <th>Pan Number</th>
-      <th>Agent Name</th>
+      <!-- <th>Agent Name</th> -->
       <th>Edit</th>
       <th>Delete</th>
     </tr>
@@ -35,11 +35,11 @@
   <tbody>
     <tr *ngFor="let data of ConsumerList 
     | paginate: {itemsPerPage: 7, currentPage: consumerPgNo}; " class="text-center">
-      <td>{{data.name}}</td>
+      <td>{{data.consumerName}}</td>
       <td>{{data.dateOfBirth | date:'dd-MM-yyyy'}}</td>
       <td>{{data.email}}</td>
       <td>{{data.panNumber}}</td>
-      <td>{{data.agentName}}</td>
+      <!-- <td>{{data.agentName}}</td> -->
       <!-- <a [routerLink]="['/updateConsumer/']" ></a> -->
       <td><button type="button" class="btn btn-outline-success text-center" (click)="editClick(data)">Edit</button></td>
       <td><button type="button" class="btn btn-outline-danger text-center" class="btn btn-outline-danger" data-bs-toggle="modal" 

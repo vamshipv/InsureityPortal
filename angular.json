@@ -94,7 +94,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assests/css/animate.css",
+              "src/assests/css/lineicons.css",
+              "src/assests/css/tailwind.css",
+              "src/assests/css/tiny-silder.css"
             ],
             "scripts": []
           }

@@ -29,6 +29,7 @@ export class DisplayDeletePropertyComponent implements OnInit {
     }
   };
 
+  deletePropertyId = 0;
   property_Id : number = 0;
   businessPropertyPgNo:number = 1;
   constructor(private service:BusinessPropertyService, public router: Router) { }
@@ -51,9 +52,9 @@ export class DisplayDeletePropertyComponent implements OnInit {
     //debugger;
     this.service.deleteProperty(businessId).subscribe(data =>
       {
-        alert("Consumer ID" +  " " + businessId.toString()+ " " + "Deleted")
+        //alert("Consumer ID" +  " " + businessId.toString()+ " " + "Deleted")
         this.service.getPropertyList();
-        this.delete_message = "Deleted Property" + businessId;
+        // this.delete_message = "Deleted Property" + businessId;
         console.log(data);
       })
   }

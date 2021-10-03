@@ -15,17 +15,17 @@ export class DisplayDeleteConsumerComponent implements OnInit {
   deleteConsumerId = 0;
   consumerModel:ConsumerModel ={
     consumerId:0,
-    name:"",
+    consumerName:"",
     dateOfBirth: new Date,
     email:"",
     panNumber:"",
-    agentId:0,
-    agentName:""
+    agentId:0
+    // agentName:""
   };
 
   consumer_Id : number = 0;
   consumerPgNo:number = 1;
-  name:string;
+  consumerName:string;
   constructor(private service:ConsumerService, public router: Router) { }
 
   ngOnInit(): void {
@@ -33,12 +33,12 @@ export class DisplayDeleteConsumerComponent implements OnInit {
   }
 
   searchConsumer(){
-    if(this.name == ""){
+    if(this.consumerName == ""){
       this.ngOnInit()
     }
     else{
       this.ConsumerList = this.ConsumerList.filter(p => {
-        return p.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+        return p.consumerName.toLocaleLowerCase().match(this.consumerName.toLocaleLowerCase());
       });
     }
   }
@@ -54,7 +54,7 @@ export class DisplayDeleteConsumerComponent implements OnInit {
   delete_message:string="";
   deleteConsumer(consumerId:number) : void
   {
-      debugger;
+      // debugger;
       this.service.deleteConsumer(consumerId).subscribe(data =>
       {
         // alert("Consumer ID" +  " " + consumerId.toString()+ " " + "Deleted")

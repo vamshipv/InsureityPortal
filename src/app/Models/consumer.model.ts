@@ -1,9 +1,9 @@
+
 export interface ConsumerModel {
     consumerId : number;
-    name : string;
+    consumerName : string;
     dateOfBirth : Date;
     email : string;
     panNumber : string;
     agentId : number;
-    agentName : string;
 }

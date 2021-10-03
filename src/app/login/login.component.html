@@ -39,13 +39,13 @@
                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
                 <div class="form-outline form-white mb-4">
-                  <input type="name" name="username" ngModel id="typeEmailX" class="form-control form-control-lg" placeholder="Agent Name" />
+                  <input type="name" name="agentName" ngModel id="typeEmailX" class="form-control form-control-lg" placeholder="Agent Name" />
                   <!-- <label class="form-label" for="typeEmailX">Agent Name</label> -->
                 </div>
                 <div class="form-outline form-white mb-4">
                   <input type="password" name="password" ngModel id="typePasswordX" class="form-control form-control-lg" placeholder="Password"/>
                   <!-- <label class="form-label" for="typePasswordX">Password</label> -->
-                  <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
+                  <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password</div>
                 </div>
                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                 </form>
