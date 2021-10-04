@@ -137,7 +137,7 @@ export class AddUpdatePropertyComponent implements OnInit {
       this.service.updateProperty(property).subscribe(data => {
       this.update_message = "Updated Property";
       this.service.getPropertyList();
-      this.router.navigate(['/businessProperty']);
+      // this.router.navigate(['/businessProperty']);
       console.log(data);
     },
     // err => {console.log(err);}

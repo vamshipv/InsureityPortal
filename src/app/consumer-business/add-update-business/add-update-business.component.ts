@@ -101,7 +101,7 @@ export class AddUpdateBusinessComponent implements OnInit {
       {
       this.create_message="Consumer Business was Added";
       this.service.getBusinessList();
-      this.router.navigate(['/consumerBusiness']);
+      // this.router.navigate(['/consumerBusiness']);
       console.log(data);
       },
       // err => {console.log(err);}
@@ -124,7 +124,7 @@ export class AddUpdateBusinessComponent implements OnInit {
       this.service.updateBusiness(business).subscribe(data => {
       this.update_message = "Updated Business";
       this.service.getBusinessList();
-      this.router.navigate(['/consumerBusiness']);
+      // this.router.navigate(['/consumerBusiness']);
       console.log(data);
     },
     // err => {console.log(err);}

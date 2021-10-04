@@ -15,10 +15,12 @@
                         <p *ngIf="policyid.errors?.required">Policy ID is required</p>
                     </div>
                 </div>
+                &nbsp;
                 <div class="form-group">
                     <button class="btn btn-block btn-success" type="submit" [disabled]="viewpolicyform.form.invalid">
                             View Policy
                     </button>
+                    &nbsp;
                     <button class="btn btn-block btn-danger" type="reset">
                         Reset
                     </button>
@@ -57,8 +59,10 @@
                     </tr>
                 </tbody>
             </table>
-            <ng-template  #nopolicyfound>
-               <h3 > {{ nopolicy }} </h3>
+            <ng-template #nopolicyfound>
+                <span *ngIf ="nopolicy != null" class="alert alert-danger">
+                    <h3> {{ nopolicy }} </h3>
+                </span>
             </ng-template>
         </div>
     </div>

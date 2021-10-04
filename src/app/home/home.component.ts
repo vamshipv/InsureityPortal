@@ -13,11 +13,11 @@ export class HomeComponent implements OnInit {
   constructor(private jwtHelper: JwtHelperService, private router: Router) { }
 
   ngOnInit(): void {
+    this.agentName = localStorage.getItem("logInAgentName");
   }
 
   isUserAuthenticated() {
     const token : string | null = localStorage.getItem("jwt");
-    this.agentName = localStorage.getItem("agentName");
     if (token && !this.jwtHelper.isTokenExpired(token) && token != null) {
       // console.log("wokrk");
       return true;

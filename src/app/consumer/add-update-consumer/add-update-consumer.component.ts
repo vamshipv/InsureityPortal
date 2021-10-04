@@ -17,13 +17,13 @@ export class AddUpdateConsumerComponent implements OnInit {
 
   ConsumerList:ConsumerModel[] = [];
   consumerForm:Form;
-  consumerModel:ConsumerModel ={
+  consumerModel:ConsumerModel={
     consumerId:0,
     consumerName:"",
     dateOfBirth: new Date(),
     email:"",
     panNumber:"",
-    agentId:0,
+    agentId:0
   };
 
   // agentNameForDropDown = [
@@ -59,17 +59,19 @@ export class AddUpdateConsumerComponent implements OnInit {
     console.log("Navigated to Update Page");
     this.updatedConsumerData = history.state;
     console.log(this.updatedConsumerData); //
-    console.log(this.updatedConsumerData.consumer.agentId);
+    // console.log(this.updatedConsumerData.consumer.agentId);
     // this.userId = this.agentNameForDropDown.findIndex(({id}) => id == this.updatedConsumerData.consumer.agentId)
     // console.log(this.userId);
+    this.getAgentId();
     this.getAgentName();
-    // this.getAgentId();
+    
   }
 
   logInAgentName : string | null;
   logInAgentId : number;
   getAgentId(){
-    this.logInAgentName = localStorage.getItem("agentName");
+    // debugger;
+    this.logInAgentName = localStorage.getItem("logInAgentName");
     if(this.logInAgentName != null){
       this.agents.forEach((a : Agent) => {
         if(a.agentName == this.logInAgentName){
@@ -91,7 +93,7 @@ export class AddUpdateConsumerComponent implements OnInit {
   create_message: string ="";
   addConsumer(consumer:ConsumerModel) : void
   {
-    this.getAgentId();
+    // this.getAgentId()
     this.service.addConsumer(consumer).subscribe(data => 
       {
       // this.consumerForm.reset();
@@ -108,22 +110,26 @@ export class AddUpdateConsumerComponent implements OnInit {
 
   editAgentName:string;
   getAgentName(){
-    this.agents.forEach((a : Agent) => {
-      if(a.agentId == this.updatedConsumerData.consumer.agentId){
-        this.editAgentName = a.agentName;
-      }
-    });
-    console.log(this.updatedConsumerData.consumer.agentId);
-    console.log(this.editAgentName);
+    // debugger;
+    if(this.updatedConsumerData.consumer.agentId != null){
+      this.agents.forEach((a : Agent) => {
+       if(a.agentId == this.updatedConsumerData.consumer.agentId){
+          this.editAgentName = a.agentName;
+        }
+      });
+      console.log(this.updatedConsumerData.consumer.agentId);
+      console.log(this.editAgentName);
+    }
   }
   
   update_message:string ="";
   updateConsumer(consumer:ConsumerModel) : void
   {
+      // this.getAgentName();
       this.service.updateConsumer(consumer).subscribe(data => {
       this.update_message = "Updated Consumer";
       this.service.getConsumerList();
-      this.router.navigate(['/consumer'])
+      // this.router.navigate(['/consumer'])
       console.log(data);
     },
     // err => {console.log(err);}

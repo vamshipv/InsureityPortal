@@ -9,7 +9,7 @@
             createPolicy(propertyid.value)">
                 <div class="form-group">
                     <label for="propertyid"> Enter Property ID:</label>
-                    <input class="form-control form-control-md" type="number" [(ngModel)]="createPolicyForm.propertyid" 
+                    <input class="form-control" type="number" [(ngModel)]="createPolicyForm.propertyid" 
                     placeholder="Property ID" id="propertyid" name="propertyid" #propertyid="ngModel"
                     [ngClass]="{ 'is-invalid': policyform.submitted && propertyid.invalid }" required/>
                 </div>

@@ -5,23 +5,30 @@
 <div class="container">
     <div class="column">
         <div class="col-md-6">
-            <form #getQuoteForm="ngForm"(ngSubmit)="getQuoteForm.form.valid && viewQuote(businessValue.value, propertyValue.value)"> 
+            <form #getQuoteForm="ngForm"
+            (ngSubmit)="getQuoteForm.form.valid && viewQuote(businessValue.value, propertyValue.value)"> 
                 <div class="form-group">
                     <label for="businessValue" class="form-label"> Enter Business Value: </label>
-                    <input class="form-control-range" type="range" id="businessValue" 
+                    &nbsp;
+                    <br>
+                    <input class="form-control-range col-md-6" type="range" id="businessValue" 
                     #businessValue="ngModel" name="businessValue" 
                     [(ngModel)]="quoteForm.bvalue" min="0" max="10" onchange="b_value.value=this.value"
                     [ngClass]="{ 'is-invalid': getQuoteForm.submitted && businessValue.invalid }" required/>
-                    <input class="form-control" type="number" id="b_value" value="0" disabled>
+                    <input class="form-control form-control-sm w-50" type="number" id="b_value" value="0" disabled>
                 </div>
+                &nbsp;
                 <div class="form-group">
                     <label for="propertyValue" class="form-label">Enter Property Value:</label>
-                    <input class="form-control-range" type="range" id="propertyValue" 
+                    &nbsp;
+                    <br>
+                    <input class="form-control-range col-md-6" type="range" id="propertyValue" 
                     #propertyValue="ngModel" name="propertyValue" 
                     [(ngModel)]="quoteForm.pvalue" min="0" max="10" onchange="p_value.value=this.value"
                     [ngClass]="{ 'is-invalid': getQuoteForm.submitted && propertyValue.invalid }" required/>
-                    <input class="form-control form-control-sm" type="number" id="p_value" value="0" disabled>
+                    <input class="form-control form-control-sm w-50" type="number" id="p_value" value="0" disabled>
                 </div>
+                &nbsp;
                 <div class="form-group">
                     <button class="btn btn-md btn-success" type="submit"> Get Quote</button> &nbsp;
                     <!-- <button class="btn btn-md btn-danger" type="reset"> Reset </button> -->
@@ -60,7 +67,9 @@
             </table>
             <!-- <div class="alert alert-danger"> -->
                 <ng-template class="alert alert-danger" #null_quote>
-                    <h3>{{ noquote }}</h3>
+                    <span *ngIf ="noquote != null" class="alert alert-danger">
+                        <h3>{{ noquote }}</h3>
+                    </span>
                 </ng-template>
             <!-- </div> -->
         </div>

@@ -10,22 +10,24 @@
                 issuePolicy(policyid.value, paymentdetail.value)">
                         <div class="form-group">
                             <label for="policyid"> Enter Policy ID:</label>
-                            <input class="form-control form-control-sm" type="number" [(ngModel)]="issueForm.policyid" 
+                            <input class="form-control" type="number" [(ngModel)]="issueForm.policyid" 
                             placeholder="Enter Policy ID here" name="policyid" id="policyid" #policyid="ngModel"
                             [ngClass]="{ 'is-invalid': issuePolicyForm.submitted && policyid.invalid }" required />
                             <div class="invalid-feedback" *ngIf="issuePolicyForm.submitted && policyid.invalid">
                                 <p *ngIf="policyid.errors?.required">Policy ID is required</p>
                             </div>
                         </div>
+                        &nbsp;
                         <div class="form-group">
                             <label for="paymentdetail"> Payment Details :</label>   
-                            <input class="form-control form-control-sm" type="text" [(ngModel)]="issueForm.paymentdetail"
+                            <input class="form-control" type="text" [(ngModel)]="issueForm.paymentdetail"
                             placeholder="Enter Payment Details here" id="paymentdetail" name="paymentdetail" #paymentdetail="ngModel"
                             [ngClass]="{ 'is-invalid': issuePolicyForm.submitted && paymentdetail.invalid }" required/>
                             <div class="invalid-feedback" *ngIf="issuePolicyForm.submitted && paymentdetail.invalid">
                                 <p *ngIf="paymentdetail.errors?.required">Payment Detail is required</p>
                             </div>
                         </div>
+                        &nbsp;
                         <div class="form-group">
                             <button class="btn btn-md btn-success" type="submit" [disabled]="issuePolicyForm.form.invalid">
                                 Issue Policy

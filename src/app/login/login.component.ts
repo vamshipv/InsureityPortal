@@ -27,7 +27,7 @@ export class LoginComponent {
       const token = (<any>response).token;
       this.agentName = form.value.agentName;
       localStorage.setItem("jwt", token);
-      localStorage.setItem("agentName", this.agentName);
+      localStorage.setItem("logInAgentName", this.agentName);
       this.invalidLogin = false;
       this.router.navigate(["/"]);
     }, err => {

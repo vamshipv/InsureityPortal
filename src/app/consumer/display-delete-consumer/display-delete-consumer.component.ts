@@ -58,7 +58,7 @@ export class DisplayDeleteConsumerComponent implements OnInit {
       this.service.deleteConsumer(consumerId).subscribe(data =>
       {
         // alert("Consumer ID" +  " " + consumerId.toString()+ " " + "Deleted")
-        this.router
+        this.router.navigateByUrl('/consumer/');
         this.service.getConsumerList();
         this.delete_message = "Deleted Consumer" + consumerId;
         console.log(data);
