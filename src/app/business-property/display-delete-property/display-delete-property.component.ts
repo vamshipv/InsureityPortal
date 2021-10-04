@@ -51,7 +51,9 @@ export class DisplayDeletePropertyComponent implements OnInit {
   {
     this.service.deleteProperty(businessId).subscribe(data =>
       {
-        this.service.getPropertyList();
+        this.router.navigateByUrl('/businessProperty/');
+        this.getProperty();
+        this.delete_message = "Deleted Business" + businessId;
         console.log(data);
       })
   }

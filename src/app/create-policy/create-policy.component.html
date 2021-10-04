@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6">
             <form #policyform="ngForm" (ngSubmit)="policyform.form.valid && 
-            createPolicy(propertyid.value)">
+            createPolicy(propertyid.value,policyform)">
                 <div class="form-group">
                     <label for="propertyid"> Enter Property ID:</label>
                     <input class="form-control" type="number" [(ngModel)]="createPolicyForm.propertyid" 

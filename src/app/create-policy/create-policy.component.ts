@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { PolicyService } from 'src/app/Services/policy.service';
 import { Policy } from '../Models/policy.model';
 import { Property } from '../Models/property.model';
@@ -76,12 +77,13 @@ export class CreatePolicyComponent implements OnInit {
     )
   }
 
-  createPolicy(pstatus:string){  //param : {
+  createPolicy(pstatus:string, policyform:NgForm){  //param : {
     this.service.createPolicy(pstatus).subscribe(
       data => {
         this.getPolicies();
         this.getProperties();
         this.policyStatus = data;
+        policyform.resetForm();
       },
       err => {
         console.log(err);

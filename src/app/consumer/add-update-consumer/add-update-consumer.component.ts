@@ -98,7 +98,7 @@ export class AddUpdateConsumerComponent implements OnInit {
       {
       // this.consumerForm.reset();
         this.create_message="New Consumer Created";
-        this.service.getConsumerList();
+        this.getConsumer();
         console.log(data);
       },
       // err => {console.log(err);}
@@ -128,7 +128,7 @@ export class AddUpdateConsumerComponent implements OnInit {
       // this.getAgentName();
       this.service.updateConsumer(consumer).subscribe(data => {
       this.update_message = "Updated Consumer";
-      this.service.getConsumerList();
+      this.getConsumer();
       // this.router.navigate(['/consumer'])
       console.log(data);
     },

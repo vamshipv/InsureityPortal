@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Policy } from 'src/app/Models/policy.model';
 import { PolicyService } from 'src/app/Services/policy.service';
 
@@ -56,17 +57,26 @@ export class IssuePolicyComponent implements OnInit {
     )
   }
 
-  issuePolicy(policyid:string, paymentdetails:string){
+  checkStatus(policyid:number): boolean{
+    if(this.policyStatus=='Policy has been Issued for Policy ID '+ policyid)
+    {
+      return true;
+    }
+    return false;
+  }
+
+  issuePolicy(policyid:string, paymentdetails:string, issuePolicyForm:NgForm){
     const param = {policyid, paymentdetails};
+    //issuePolicyForm.resetForm();
     this.service.issuePolicy(param).subscribe(
       data => {
-        // this.service.redirectTo("issuepolicy");
         this.getPolicies();
         this.policyStatus = data;
       },
       err => {
         console.log(err);
       });
+
   }
   
 

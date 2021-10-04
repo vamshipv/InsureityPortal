@@ -89,10 +89,10 @@
                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
                 [(ngModel)]="propertyModel.propertyMasterId" [ngClass]="{ 'is-invalid': propertyForm.submitted && propertyMasterId.invalid }" required>
                 <div class="invalid-feedback" *ngIf="propertyForm.submitted && propertyMasterId.invalid">
-                    <p class="offset-8" *ngIf="propertyMasterId.errors?.required">Property Id is required</p>
+                    <p class="offset-12" *ngIf="propertyMasterId.errors?.required">Property Id is required</p>
                 </div>
-                <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
-                data-bs-toggle="modal" data-bs-target="#myModal1">R</button>
+                <span type="button" class="input-group-text" id="inputGroup-sizing-default" 
+                data-bs-toggle="modal" data-bs-target="#myModal1">R</span>
 
                 <div class="modal fade" id="myModal1" role="dialog">
                     <div class="modal-dialog modal-dialog-scrollable">
@@ -132,13 +132,11 @@
             </div>
             
             <br>
-            <input type="submit" class="btn btn-outline-danger" value="Create">
-            <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
-            
+            <input type="submit" class="btn btn-outline-success" value="Create">
+            <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset"> 
         </form>
-        <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
-        <br>
-        <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
+        <div class="alert alert-success mt-2" *ngIf="create_message">{{create_message}}</div>
+        <div class="alert alert-danger mt-2" *ngIf ="errorMessage">Please Check For Property Master Id or Property Id</div>
     </div>
     </div>
 
@@ -284,11 +282,11 @@
                     </div>
                 </div>
                 <br>
-                <input type="submit" class="btn btn-outline-danger" value="Update">
+                <input type="submit" class="btn btn-outline-success" value="Update">
                 <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
             </form>
             <div class="alert alert-success" *ngIf="update_message">{{update_message}}</div>
-            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
+            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">Please Check For Property Master Id or Property Id</div>
         </div>
         </div>
         <!-- {{updatedData | json }} -->

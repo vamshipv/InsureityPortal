@@ -20,7 +20,6 @@ export class DisplayDeleteConsumerComponent implements OnInit {
     email:"",
     panNumber:"",
     agentId:0
-    // agentName:""
   };
 
   consumer_Id : number = 0;
@@ -59,7 +58,7 @@ export class DisplayDeleteConsumerComponent implements OnInit {
       {
         // alert("Consumer ID" +  " " + consumerId.toString()+ " " + "Deleted")
         this.router.navigateByUrl('/consumer/');
-        this.service.getConsumerList();
+        this.getConsumer();
         this.delete_message = "Deleted Consumer" + consumerId;
         console.log(data);
       })

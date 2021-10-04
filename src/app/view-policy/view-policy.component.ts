@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Policy } from 'src/app/Models/policy.model';
 import { PolicyService } from 'src/app/Services/policy.service';
 
@@ -26,7 +27,7 @@ export class ViewPolicyComponent implements OnInit {
     return val !== this.EmptyPSData || val != null; // typeof val !== 'string';
   }
 
-  viewPolicy(pid:string){
+  viewPolicy(pid:string, viewpolicyform:NgForm){
     this.service.viewPolicyByID(pid).subscribe(
       data => {
         if(data == null){
@@ -36,11 +37,12 @@ export class ViewPolicyComponent implements OnInit {
         else{
           this.ViewPolicyData = data;
         }
+        viewpolicyform.resetForm();
       },
       err => {
         console.log(err);
       }
-    )
+    );
   }  
 
 }

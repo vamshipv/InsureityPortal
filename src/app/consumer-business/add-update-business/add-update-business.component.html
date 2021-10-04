@@ -135,11 +135,11 @@
 
 
             <br>
-            <input type="submit" class="btn btn-outline-danger" value="Create">
+            <input type="submit" class="btn btn-outline-success" value="Create">
             <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
         </form>
         <div class="alert alert-success" *ngIf="create_message">{{create_message}}</div>
-        <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
+        <div class="alert alert-danger mt-2" *ngIf ="errorMessage">Please Check For Business Master Id or Consumer Id</div>
     </div>
     </div>
 
@@ -249,10 +249,10 @@
                     </div>
                 </div>
                 <br>
-                <input type="submit" class="btn btn-outline-danger" value="Update">
+                <input type="submit" class="btn btn-outline-success" value="Update">
                 <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
             </form>
-            <div class="alert alert-info mt-2" *ngIf="update_message">{{update_message}}</div>
-            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
+            <div class="alert alert-success mt-2" *ngIf="update_message">{{update_message}}</div>
+            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">Please Check For Business Master Id or Consumer Id</div>
         </div>
         </div>

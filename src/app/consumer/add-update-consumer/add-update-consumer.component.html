@@ -42,10 +42,10 @@
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Pan Number</span>
                 <input type="text" #panNumber = "ngModel" name="panNumber" class="form-control" aria-label="Sizing example input" 
-                aria-describedby="inputGroup-sizing-default" 
+                aria-describedby="inputGroup-sizing-default" maxlength="10"
                 [(ngModel)]="consumerModel.panNumber" [ngClass]="{ 'is-invalid': consumerForm.submitted && panNumber.invalid }" required>
                 <div class="invalid-feedback" *ngIf="consumerForm.submitted && panNumber.invalid">
-                    <p class="offset-7" *ngIf="panNumber.errors?.required">Pan Number is required</p>
+                    <p class="offset-7" *ngIf="panNumber.errors?.required ">Pan Number is required</p>
                 </div>
             </div>
 
@@ -84,11 +84,11 @@
                 </select> -->
             </div>
             <br>
-            <button type="submit" class="btn btn-outline-success" value="Create">Create</button>
+            <button type="submit" class="btn btn-outline-success" [disabled]="consumerForm.invalid" value="Create">Create</button>
             <button type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">Reset</button>
-            <div class="alert alert-success" *ngIf="create_message">{{create_message}}
-            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
-            </div>
+            <br>
+                <div class="alert alert-success" *ngIf="create_message">{{create_message}}</div>
+                <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
         </form>
         <br>
         <!-- <div class="alert alert-success" *ngIf="create_message">{{create_message}} 

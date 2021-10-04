@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="container">
         <div class="col-md-6">
-            <form #viewpolicyform="ngForm" (ngSubmit)="viewpolicyform.form.valid && viewPolicy(policyid.value)">
+            <form #viewpolicyform="ngForm" (ngSubmit)="viewpolicyform.form.valid && viewPolicy(policyid.value, viewpolicyform)">
                 <div class="form-group">
                     <label for="policyid">Enter Policy Id:</label>
                     <input class="form-control" type="number" id="policyid" #policyid="ngModel"
