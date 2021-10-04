@@ -49,12 +49,9 @@ export class DisplayDeletePropertyComponent implements OnInit {
   delete_message:string="";
   deleteProperty(businessId:number) : void
   {
-    //debugger;
     this.service.deleteProperty(businessId).subscribe(data =>
       {
-        //alert("Consumer ID" +  " " + businessId.toString()+ " " + "Deleted")
         this.service.getPropertyList();
-        // this.delete_message = "Deleted Property" + businessId;
         console.log(data);
       })
   }
@@ -66,20 +63,6 @@ export class DisplayDeletePropertyComponent implements OnInit {
 
   editClick(property:BusinessPropertyModel) : void
   {
-    // debugger;
-    // this.service.getPropertyById(businessId)
-    // .pipe(first())
-    // .subscribe({
-    //   next: () => {
-    //     this.router.navigateByUrl('/updateProperty/'+ businessId);
-    //     console.log("Update Done");
-    //     // cu-consumer/updateConsumer/1 UpdateConsumer?ConsumerId=1
-    //   }
-    // });
-    // this.router.navigate(['/cu-consumer']);
-    // console.log(history.state);
-    //     console.log("Update Done");
-    // this.router.navigate(['/updateProperty/',property.propertyId]);
     this.router.navigateByUrl('/updateProperty/', {state: { property } });
     console.log(property);
   }

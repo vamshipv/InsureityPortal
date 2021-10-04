@@ -4,6 +4,10 @@ import { first } from 'rxjs/operators';
 import { ConsumerBusinessService } from 'src/app/Services/consumer-business.service';
 import { ConsumerBusinessModel } from 'src/app/Models/consumer-business.model';
 import { ActivatedRoute } from '@angular/router';
+import { ConsumerService } from 'src/app/Services/consumer.service';
+import { ConsumerModel } from 'src/app/Models/consumer.model';
+import { BusinessMaster } from 'src/app/Models/business-master.Model';
+import { data } from 'autoprefixer';
 
 @Component({
   selector: 'app-add-update-business',
@@ -29,9 +33,29 @@ export class AddUpdateBusinessComponent implements OnInit {
     }
   };
 
+  businessMasterList : BusinessMaster[] = [];
+
+  businessMaster: BusinessMaster = {
+    businessMasterId: 0,
+      businessValue: 0,
+      businessTurnOver: 0,
+      capitalInvest: 0
+  }
+
   updatedbusinessData : any;
 
-  constructor(private service:ConsumerBusinessService, public router: Router,public route:ActivatedRoute) { }
+  ConsumerList:ConsumerModel[] = [];
+  consumerModel:ConsumerModel ={
+    consumerId:0,
+    consumerName:"",
+    dateOfBirth: new Date(),
+    email:"",
+    panNumber:"",
+    agentId:0,
+  };
+
+  constructor(private service:ConsumerBusinessService, public router: Router,
+    public route:ActivatedRoute,private serviceConsumer:ConsumerService) { }
 
   ngOnInit(): void {
     this.router.getCurrentNavigation()?.extras.state;
@@ -40,6 +64,24 @@ export class AddUpdateBusinessComponent implements OnInit {
     console.log("Navigated to Update Page");
     this.updatedbusinessData = history.state;
     console.log(this.updatedbusinessData);
+    this.getBusiness();
+    this.getConsumer();
+    this.getBusinessMaster();
+  }
+
+  getBusinessMaster()
+  {
+    this.serviceConsumer.getBusinessMaster().subscribe(data => {
+      this.businessMasterList = data;
+    });
+  }
+
+  getConsumer()
+  {
+    this.serviceConsumer.getConsumerList().subscribe(data => {
+      this.ConsumerList = data
+      console.log(this.ConsumerList);
+    });
   }
 
   getBusiness()
@@ -50,6 +92,7 @@ export class AddUpdateBusinessComponent implements OnInit {
     });
   }
 
+  errorMessage = [] = "";
   create_message: string ="";
   addBusiness(business:ConsumerBusinessModel) : void
   {
@@ -61,7 +104,11 @@ export class AddUpdateBusinessComponent implements OnInit {
       this.router.navigate(['/consumerBusiness']);
       console.log(data);
       },
-    err => {console.log(err);}
+      // err => {console.log(err);}
+        err => {
+          this.errorMessage = err.error;
+          ;
+        } 
     );
   }
   businessData : ConsumerBusinessModel;
@@ -79,7 +126,13 @@ export class AddUpdateBusinessComponent implements OnInit {
       this.service.getBusinessList();
       this.router.navigate(['/consumerBusiness']);
       console.log(data);
-    })
+    },
+    // err => {console.log(err);}
+      err => {
+        this.errorMessage = err.error;
+        ;
+      } 
+  );
   }
 
 }

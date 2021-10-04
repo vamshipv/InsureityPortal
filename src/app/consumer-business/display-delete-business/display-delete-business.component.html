@@ -3,17 +3,14 @@
 </div>
 <hr>
 <div class="row">
-  <!-- <h3 class="col-5 offset-2">List of Consumer Business</h3> -->
   <div class="form-group col-md-7 offset-sm-2">
     <input type="text" class="form-control" name="businessName" [(ngModel)]="BusinessName" 
     (ngModelChange)="searchBusiness()" 
     placeholder="Enter Business Name to search businesses">
   </div>
   <div class="col ">
-      <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Business</button>
-      <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="editClick()">Edit Consumer</button>  -->
-      <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="deleteClick()">Delete Consumer</button>  -->
-  </div>
+      <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Business</button>
+      </div>
 <br>
 <br>
 </div>
@@ -41,11 +38,8 @@
         <td>{{data.businessMaster.businessValue}}</td>
         <td>{{data.businessMaster.businessTurnOver}}</td>
         <td>{{data.businessMaster.capitalInvest}}</td>
-        <!-- <a [routerLink]="['/updateBusiness/',{id : data.businessId}]" ></a> -->
-        <!-- (click)="editClick(data)" -->
         <td>
           <button type="button" class="btn btn-outline-success text-center" (click)="editClick(data)">Edit</button></td>
-      <!-- <td><button type="button" class="btn btn-outline-danger text-center" (click)="deleteBusiness(data.businessId)">Delete</button></td> -->
       <td><button type="button" class="btn btn-outline-danger text-center" class="btn btn-outline-danger" data-bs-toggle="modal" 
         data-bs-target="#exampleModal" (click)="deleteBusinessId = data.businessId">Delete</button>
         <div class="modal fade" id="exampleModal" tabindex="-1" 
@@ -55,6 +49,9 @@
             <div class="modal-header">
             <h5  class="modal-title" id="exampleModalLabel">Delete Consumer</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure ?
             </div>
             <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

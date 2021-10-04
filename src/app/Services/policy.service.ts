@@ -13,14 +13,15 @@ export class PolicyService {
 
   constructor(private http:HttpClient, private router:Router) { }
 
+  // https://localhost:44366/api/Policy/ViewConsumerPolicyById?PolicyId=1
   readonly baseURL = 'https://localhost:44366/api/Policy';
 
   getPolicies():Observable<Policy[]>{
-    return this.http.get<Policy[]>(this.baseURL + '/ViewPolicies');  // GetPolicies
+    return this.http.get<Policy[]>(this.baseURL + '/GetPolicies');
   }
 
   getProperties():Observable<Property[]>{
-    return this.http.get<Property[]>(this.baseURL + '/ViewProperties');
+    return this.http.get<Property[]>(this.baseURL + '/GetProperties');
   }
 
   createPolicy(propertyId:string):Observable<string>{

@@ -1,5 +1,5 @@
 export class Quote {
-    qid:number = 0;
+    quoteId:number = 0;
     propertyValueFrom:number = 0;
     propertyValueTo:number = 0;
     businesssValueFrom:number = 0;

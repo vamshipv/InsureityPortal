@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent {
 
   invalidLogin: boolean;
-  username: string;
+  agentName: string;
   
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -25,7 +25,9 @@ export class LoginComponent {
       })
     }).subscribe(response => {
       const token = (<any>response).token;
+      this.agentName = form.value.agentName;
       localStorage.setItem("jwt", token);
+      localStorage.setItem("agentName", this.agentName);
       this.invalidLogin = false;
       this.router.navigate(["/"]);
     }, err => {

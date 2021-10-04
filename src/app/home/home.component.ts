@@ -9,6 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class HomeComponent implements OnInit {
 
+  agentName:string | null;
   constructor(private jwtHelper: JwtHelperService, private router: Router) { }
 
   ngOnInit(): void {
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
 
   isUserAuthenticated() {
     const token : string | null = localStorage.getItem("jwt");
+    this.agentName = localStorage.getItem("agentName");
     if (token && !this.jwtHelper.isTokenExpired(token) && token != null) {
       // console.log("wokrk");
       return true;

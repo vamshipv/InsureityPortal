@@ -1,4 +1,3 @@
-<!-- isActive('/addConsumer?ConsumerId=',consumer_Id) -->
 <div class="col-11 row mt-5" *ngIf="router.url === '/addConsumer/ConsumerId/0'">
     <div class="col-3 offset-5">
         <form #consumerForm="ngForm" (ngSubmit)="addConsumer(consumerForm.value)">
@@ -33,7 +32,7 @@
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
                 <input type="text" #email = "ngModel" name="email" class="form-control" aria-label="Sizing example input" 
-                aria-describedby="inputGroup-sizing-default" 
+                aria-describedby="inputGroup-sizing-default" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
                 [(ngModel)]="consumerModel.email" [ngClass]="{ 'is-invalid': consumerForm.submitted && email.invalid }" required>
                 <div class="invalid-feedback" *ngIf="consumerForm.submitted && email.invalid">
                     <p class="offset-8" *ngIf="email.errors?.required">Email is required</p>
@@ -50,32 +49,32 @@
                 </div>
             </div>
 
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Agent Id</span>
-                <!-- <input type="number" #agentId = "ngModel" name="agentId" class="form-control" aria-label="Sizing example input" 
+                <!-- <span class="input-group-text" id="inputGroup-sizing-default">Agent Id</span> -->
+                <input type="number" #agentId = "ngModel" name="agentId" class="form-control" aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-default" 
-                [(ngModel)]="consumerModel.agentId" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentId.invalid }"> -->
-                    <select class="form-select" [(ngModel)] = "selectedAgentId" #agentName ="ngModel" 
+                [(ngModel)]="logInAgentId" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentId.invalid }" hidden>
+
+                    <!-- <select class="form-select" [(ngModel)] = "selectedAgentId" #agentName ="ngModel" 
                     name ="agentId">
                     <option value ="" disabled selected>Select</option>
                     <option *ngFor="let agent of agentNameForDropDown" name ="agentId" 
                     dropDownId = agent.id  [ngValue]="agent.id" ngDefaultControl
                     [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required> 
                     {{agent.agentNameDrop}}</option>
-                </select>
+                </select> -->
                 <!-- <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentId.invalid">
                     <p class="offset-8" *ngIf="agentId.errors?.required">Agent Id is required</p>
                 </div> -->
-            </div>
 
-            <!-- <div class="input-group mb-3"> -->
-                <!-- <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span> -->
-                <!-- <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
+                <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-default" 
-                [(ngModel)]="consumerModel.agentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required> 
+                [(ngModel)]="logInAgentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" disabled> 
                 <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
                     <p class="offset-7" *ngIf="agentName.errors?.required">Agent Name is required</p>
-                </div> -->
+                </div>
                 <!-- //TODO Error in Consile -->
                 <!-- <select class="form-select" [(ngModel)] = "selectedAgentName" name ="agentName">
                     <option value ="" disabled selected>Select</option>
@@ -83,11 +82,12 @@
                     [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required> 
                     {{agent.agentNameDrop}}</option>
                 </select> -->
-            <!-- </div> -->
+            </div>
             <br>
             <button type="submit" class="btn btn-outline-success" value="Create">Create</button>
             <button type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">Reset</button>
-            <div class="alert alert-success" *ngIf="create_message">{{create_message}} 
+            <div class="alert alert-success" *ngIf="create_message">{{create_message}}
+            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
             </div>
         </form>
         <br>
@@ -115,7 +115,7 @@
                 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-                    <input type="text" #name = "ngModel" name="name" class="form-control" 
+                    <input type="text" #name = "ngModel" name="consumerName" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
                     [(ngModel)]="updatedConsumerData.consumer.consumerName" [ngClass]="{ 'is-invalid': consumerForm.submitted && name.invalid }" required>
                     <div class="invalid-feedback" *ngIf="consumerForm.submitted && name.invalid">
@@ -153,18 +153,35 @@
                         <p class="offset-7" *ngIf="panNumber.errors?.required">Pan Number is required</p>
                     </div>
                 </div>
-    
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Agent Id</span>
-                    <input type="text" #agentId = "ngModel" name="agentId" class="form-control" aria-label="Sizing example input" 
+                    <!-- <span class="input-group-text" id="inputGroup-sizing-default">Agent Id</span> -->
+                    <input type="number" #agentId = "ngModel" name="agentId" class="form-control" aria-label="Sizing example input" 
                     aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="updatedConsumerData.consumer.agentId" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentId.invalid }" required>
-                    <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentId.invalid">
-                        <p class="offset-8" *ngIf="agentId.errors?.required">Agent Id is required</p>
+                    [(ngModel)]="logInAgentId" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentId.invalid }" hidden>
+                </div>
+
+                <!-- <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
+                        <select class="form-select" [(ngModel)] = "selectedAgentId" #agentName ="ngModel" 
+                        name ="agentId">
+                        <option value ="" disabled selected >{{agentName.value}}</option>
+                        <option *ngFor="let agent of agentNameForDropDown" name ="agentId" 
+                        dropDownId = agent.id  [value]="agent.agentNameDrop" ngDefaultControl
+                        [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required> 
+                        {{agent.agentNameDrop}}</option>
+                    </select>
+                </div> -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
+                    <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
+                    aria-describedby="inputGroup-sizing-default" 
+                    [(ngModel)]="editAgentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" disabled> 
+                    <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
+                        <p class="offset-7" *ngIf="agentName.errors?.required">Agent Name is required</p>
                     </div>
                 </div>
     
-                <div class="input-group mb-3">
+                <!-- <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
                     <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
                     aria-describedby="inputGroup-sizing-default" 
@@ -172,12 +189,13 @@
                     <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
                         <p class="offset-7" *ngIf="agentName.errors?.required">Agent Name id required</p>
                     </div>
-                </div>
+                </div> -->
                 <br>
                 <input type="submit" class="btn btn-outline-danger" value="Update">
                 <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
             </form>
             <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
+            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
         </div>
-        {{updatedConsumerData | json}}
+        <!-- {{updatedConsumerData | json}} -->
         </div>

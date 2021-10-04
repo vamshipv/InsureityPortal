@@ -1,8 +1,14 @@
-<!-- isActive('/addConsumer?ConsumerId=',consumer_Id) -->
+
 
 <div class="col-9 row mt-5" *ngIf="router.url === '/addProperty/PropertyId/0'">
     <div class="col-4 offset-6">
         <form #propertyForm="ngForm" (ngSubmit)="addProperty(propertyForm.value)">
+            <button type="button" routerLink ='/businessProperty'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                  </svg>
+                <i class="bi-chevron-double-left">
+            </i></button>
             <h3 class="input-group mb-3">Add Property Details</h3>
             <hr>
             <div class="input-group mb-3">
@@ -43,6 +49,38 @@
                 <div class="invalid-feedback" *ngIf="propertyForm.submitted && businessId.invalid">
                     <p class="offset-8" *ngIf="businessId.errors?.required">Building Id is required</p>
                 </div>
+                <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
+                data-bs-toggle="modal" data-bs-target="#myModal">R</button>
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">Business Id Reference</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Business Id</th>
+                                    <th scope="col">Busienss Name</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor = "let data of businessList">
+                                        <td scope="row">{{data.businessId}}</td>
+                                        <td scope="row">{{data.businessName}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="input-group mb-3">
@@ -54,129 +92,53 @@
                     <p class="offset-8" *ngIf="propertyMasterId.errors?.required">Property Id is required</p>
                 </div>
                 <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
-                data-bs-toggle="modal" data-bs-target="#myModal">R</button>
+                data-bs-toggle="modal" data-bs-target="#myModal1">R</button>
+
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">Property Master Id Reference</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Assest Cost</th>
+                                    <th scope="col">Salvage Value</th>
+                                    <th scope="col">Assest Age</th>
+                                    <th scope="col">Property Value</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor = "let data of propertyMasterList">
+                                        <td scope="row">{{data.propertyMasterId}}</td>
+                                        <td scope="row">{{data.costOfAssest}}</td>
+                                        <td scope="row">{{data.salvageValue}}</td>
+                                        <td scope="row">{{data.usefulLifeOfAssest}}</td>
+                                        <td scope="row">{{data.propertyValue}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
             </div>
             
-            <!-- Modal Content -->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h4 class="modal-title">Business Master Id Reference</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Property Value</th>
-                                <th scope="col">Salvage Value</th>
-                                <th scope="col">Assest Cost</th>
-                                <th scope="col">Assest Age</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>7</td>
-                                    <td>0</td>
-                                    <td>500</td>
-                                    <td>100000</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>1</td>
-                                    <td>1200</td>
-                                    <td>200000</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>2</td>
-                                    <td>2100</td>
-                                    <td>300000</td>
-                                    <td>7</td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>3</td>
-                                    <td>3200</td>
-                                    <td>400000</td>
-                                    <td>8</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>4</td>
-                                    <td>4500</td>
-                                    <td>500000</td>
-                                    <td>9</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>5</td>
-                                    <td>6000</td>
-                                    <td>600000</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td>6</td>
-                                    <td>7700</td>
-                                    <td>700000</td>
-                                    <td>11</td>
-                                </tr>
-                                <tr>
-                                    <td>14</td>
-                                    <td>7</td>
-                                    <td>9600</td>
-                                    <td>800000</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>15</td>
-                                    <td>8</td>
-                                    <td>11700</td>
-                                    <td>900000</td>
-                                    <td>13</td>
-                                </tr>
-                                <tr>
-                                    <td>16</td>
-                                    <td>9</td>
-                                    <td>14000</td>
-                                    <td>1000000</td>
-                                    <td>14</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <!-- <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Cost Of Assest</span>
-                <input type="number" id="costOfAssest" name="costOfAssest" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="propertyModel.propertyMaster.costOfAssest">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Salvage Value</span>
-                <input type="number" id="salvageValue" name="salvageValue" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="propertyModel.propertyMaster.propertyValue">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Life Of Assest</span>
-                <input type="number" id="usefulLifeOfAssest" name="usefulLifeOfAssest" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="propertyModel.propertyMaster.salvageValue">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Property Value</span>
-                <input type="number" id="propertyValue" name="propertyValue" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="propertyModel.propertyMaster.usefulLifeOfAssest">
-            </div> -->
             <br>
             <input type="submit" class="btn btn-outline-danger" value="Create">
             <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
+            
         </form>
         <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
+        <br>
+        <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
     </div>
     </div>
 
@@ -241,6 +203,37 @@
                     <div class="invalid-feedback" *ngIf="propertyForm.submitted && businessId.invalid">
                         <p class="offset-8" *ngIf="businessId.errors?.required">Building Id is required</p>
                     </div>
+                    <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
+                data-bs-toggle="modal" data-bs-target="#myModal">R</button>
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">Business Id Reference</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Business Id</th>
+                                    <th scope="col">Busienss Name</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor = "let data of businessList">
+                                        <td scope="row">{{data.businessId}}</td>
+                                        <td scope="row">{{data.businessName}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 </div>
     
                 <div class="input-group mb-3">
@@ -260,7 +253,7 @@
                     <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h4 class="modal-title">Business Master Id Reference</h4>
+                        <h4 class="modal-title">Property Master Id Reference</h4>
                         </div>
                         <div class="modal-body">
                             <table class="table">
@@ -274,75 +267,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>0</td>
-                                        <td>500</td>
-                                        <td>100000</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>1</td>
-                                        <td>1200</td>
-                                        <td>200000</td>
-                                        <td>6</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>2</td>
-                                        <td>2100</td>
-                                        <td>300000</td>
-                                        <td>7</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>3</td>
-                                        <td>3200</td>
-                                        <td>400000</td>
-                                        <td>8</td>
-                                    </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>4</td>
-                                        <td>4500</td>
-                                        <td>500000</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>5</td>
-                                        <td>6000</td>
-                                        <td>600000</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>6</td>
-                                        <td>7700</td>
-                                        <td>700000</td>
-                                        <td>11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>14</td>
-                                        <td>7</td>
-                                        <td>9600</td>
-                                        <td>800000</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>15</td>
-                                        <td>8</td>
-                                        <td>11700</td>
-                                        <td>900000</td>
-                                        <td>13</td>
-                                    </tr>
-                                    <tr>
-                                        <td>16</td>
-                                        <td>9</td>
-                                        <td>14000</td>
-                                        <td>1000000</td>
-                                        <td>14</td>
+                                    <tr *ngFor = "let data of propertyMasterList">
+                                        <td scope="row">{{data.propertyMasterId}}</td>
+                                        <td scope="row">{{data.costOfAssest}}</td>
+                                        <td scope="row">{{data.salvageValue}}</td>
+                                        <td scope="row">{{data.usefulLifeOfAssest}}</td>
+                                        <td scope="row">{{data.propertyValue}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -357,7 +287,8 @@
                 <input type="submit" class="btn btn-outline-danger" value="Update">
                 <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
             </form>
-            <div class="alert alert-success" *ngIf="create_message">{{create_message}}</div>
+            <div class="alert alert-success" *ngIf="update_message">{{update_message}}</div>
+            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
         </div>
         </div>
         <!-- {{updatedData | json }} -->

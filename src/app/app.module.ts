@@ -26,6 +26,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HomeComponent } from './home/home.component';
 import { DatePipe } from '@angular/common';
+import { ErrorPagesComponent } from './error-pages/error-pages.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -48,7 +49,8 @@ export function tokenGetter() {
     AddUpdateBusinessComponent,
     DisplayDeleteBusinessComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorPagesComponent
   ],
   imports: [
     BrowserModule,

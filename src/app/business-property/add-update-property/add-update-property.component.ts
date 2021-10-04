@@ -5,6 +5,12 @@ import { BusinessPropertyService } from 'src/app/Services/business-property.serv
 import { BusinessPropertyModel } from 'src/app/Models/business-property.model';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ConsumerBusinessService } from 'src/app/Services/consumer-business.service';
+import { ConsumerBusinessModel } from 'src/app/Models/consumer-business.model';
+import { BusinessMaster } from 'src/app/Models/business-master.Model';
+import { PropertyMaster } from 'src/app/Models/property-master.Model';
+import { ConsumerService } from 'src/app/Services/consumer.service';
 
 @Component({
   selector: 'app-add-update-property',
@@ -31,15 +37,45 @@ export class AddUpdatePropertyComponent implements OnInit {
     }
   };
   
+  businessList : ConsumerBusinessModel[] = [];
+
+  businessModel:ConsumerBusinessModel ={
+    businessId: 0,
+    businessName: "",
+    businessType: "",
+    totalEmployees: 0,
+    businessMasterId: 0,
+    consumerId: 0,
+    "businessMaster": {
+      businessMasterId: 0,
+      businessValue: 0,
+      businessTurnOver: 0,
+      capitalInvest: 0
+    }
+  };
+
+  propertyMasterList : PropertyMaster[] =[];
+
+  propertyMaster : PropertyMaster = {
+    propertyMasterId: 0,
+    costOfAssest: 0,
+    salvageValue: 0,
+    usefulLifeOfAssest: 0,
+    propertyValue: 0,
+  }
+
   updatedData: any;
 
   state$ : Observable<BusinessPropertyModel>
 
   property_Id : number = 0;
-  constructor(private service:BusinessPropertyService, public router: Router, public route: ActivatedRoute) { }
+  constructor(private service:BusinessPropertyService, public router: Router, 
+    public route: ActivatedRoute, private serviceBusiness:ConsumerBusinessService, private serviceConsumer:ConsumerService) { }
 
   ngOnInit(): void {
-    // this.getProperty();
+    this.getProperty();
+    this.getBusiness();
+    this.getpropertyMasterList();
     // this.data = this.service.data;
     // this.service.data = undefined;
     // this.state$ = this.route.paramMap.pipe(map(() => window.history.state))
@@ -52,6 +88,14 @@ export class AddUpdatePropertyComponent implements OnInit {
     console.log(this.updatedData);
   }
 
+  getBusiness()
+  {
+    this.serviceBusiness.getBusinessList().subscribe(data => {
+      this.businessList = data;
+      console.log(this.businessList);
+    });
+  }
+
   getProperty()
   {
     this.service.getPropertyList().subscribe(data => {
@@ -60,7 +104,16 @@ export class AddUpdatePropertyComponent implements OnInit {
     });
   }
 
+  getpropertyMasterList()
+  {
+    this.serviceConsumer.getPropertyMaster().subscribe(data => {
+      this.propertyMasterList = data
+      console.log(this.propertyMasterList);
+    });
+  }
+
   create_message: string ="";
+  errorMessage = [] = "";
   addProperty(property:BusinessPropertyModel) : void
   {
     this.service.addProperty(property).subscribe(data => 
@@ -69,7 +122,11 @@ export class AddUpdatePropertyComponent implements OnInit {
       this.service.getPropertyList();
       console.log(data);
       },
-    err => {console.log(err);}
+    // err => {console.log(err);}
+      err => {
+        this.errorMessage = err.error;
+        ;
+      } 
     );
   }
 
@@ -82,7 +139,13 @@ export class AddUpdatePropertyComponent implements OnInit {
       this.service.getPropertyList();
       this.router.navigate(['/businessProperty']);
       console.log(data);
-    })
+    },
+    // err => {console.log(err);}
+      err => {
+        this.errorMessage = err.error;
+        ;
+      } 
+    );
   }
 
 }

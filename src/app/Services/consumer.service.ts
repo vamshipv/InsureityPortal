@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { ConsumerModel } from '../Models/consumer.model';
+import { BusinessMaster } from '../Models/business-master.Model';
+import { PropertyMaster } from '../Models/property-master.Model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,16 @@ export class ConsumerService {
   getConsumerList():Observable<ConsumerModel[]>
   {
     return this.http.get<ConsumerModel[]>(this.ApiURL + '/GetConsumer/');
+  }
+
+  getBusinessMaster():Observable<BusinessMaster[]>
+  {
+    return this.http.get<BusinessMaster[]>(this.ApiURL + '/GetBusienssMaster/');
+  }
+
+  getPropertyMaster():Observable<PropertyMaster[]>
+  {
+    return this.http.get<PropertyMaster[]>(this.ApiURL + '/GetPropertyMaster/');
   }
 
   addConsumer(consumer:ConsumerModel):Observable<ConsumerModel>{

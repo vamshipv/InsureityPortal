@@ -3,12 +3,9 @@
 </div>
 <hr>
 <div class="row">
-  <!-- <h3 class="col-5 offset-2">List of Business Property</h3> -->
     <div class="col-5 offset-9">
         <button type="button" class="btn btn-success float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Property</button>
-        <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="editClick()">Edit Consumer</button>  -->
-        <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="deleteClick()">Delete Consumer</button>  -->
-    </div>
+        </div>
     <br>
   </div>
   <div class="row justify-content-center">
@@ -41,7 +38,6 @@
         <!-- <a [routerLink]="['/updateProperty']" ></a> -->
         <td scope="row"><button type="button" 
           class="btn btn-outline-success text-center" (click)="editClick(data)">Edit</button></td>
-        <!-- <td scope="row"><button type="button" class="btn btn-outline-danger text-center" (click)="deleteProperty(data.propertyId)">Delete</button></td> -->
         <td><button type="button" class="btn btn-outline-danger text-center" class="btn btn-outline-danger" data-bs-toggle="modal" 
           data-bs-target="#exampleModal" (click)="deletePropertyId = data.propertyId">Delete</button>
           <div class="modal fade" id="exampleModal" tabindex="-1" 
@@ -51,6 +47,9 @@
               <div class="modal-header">
               <h5  class="modal-title" id="exampleModalLabel">Delete Consumer</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure ?
               </div>
               <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

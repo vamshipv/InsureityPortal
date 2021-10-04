@@ -18,6 +18,8 @@ import { IssuePolicyComponent } from './issue-policy/issue-policy.component';
 import { ViewPolicyComponent } from './view-policy/view-policy.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { BusinessMaster } from './Models/business-master.Model';
+import { PropertyMaster } from './Models/property-master.Model';
 
 
 const routes: Routes = [
