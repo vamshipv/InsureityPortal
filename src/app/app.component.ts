@@ -9,6 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AppComponent {
   title = 'Insureity Portal';
+  agentName : string | null;
 
   constructor(private jwtHelper: JwtHelperService, private router: Router) { }
 
@@ -16,6 +17,7 @@ export class AppComponent {
     const token : string | null = localStorage.getItem("jwt");
     if (token && !this.jwtHelper.isTokenExpired(token) && token != null) {
       // console.log("wokrk");
+      this.agentName = localStorage.getItem("logInAgentName");
       return true;
     }
     else {

@@ -2,7 +2,7 @@
 
 <div class="col-9 row mt-5" *ngIf="router.url === '/addProperty/PropertyId/0'">
     <div class="col-4 offset-6">
-        <form #propertyForm="ngForm" (ngSubmit)="addProperty(propertyForm.value)">
+        <form #propertyForm="ngForm" (ngSubmit)="addProperty(propertyForm.value,propertyForm)">
             <button type="button" routerLink ='/businessProperty'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
@@ -50,9 +50,9 @@
                     <p class="offset-8" *ngIf="businessId.errors?.required">Building Id is required</p>
                 </div>
                 <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
-                data-bs-toggle="modal" data-bs-target="#myModal">R</button>
+                data-bs-toggle="modal" data-bs-target="#myModalBusinessId">R</button>
 
-                <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal fade" id="myModalBusinessId" role="dialog">
                     <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -92,9 +92,9 @@
                     <p class="offset-12" *ngIf="propertyMasterId.errors?.required">Property Id is required</p>
                 </div>
                 <span type="button" class="input-group-text" id="inputGroup-sizing-default" 
-                data-bs-toggle="modal" data-bs-target="#myModal1">R</span>
+                data-bs-toggle="modal" data-bs-target="#myModalProperty">R</span>
 
-                <div class="modal fade" id="myModal1" role="dialog">
+                <div class="modal fade" id="myModalProperty" role="dialog">
                     <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -149,6 +149,12 @@
     <!-- <div class="col-11 row mt-5" *ngIf="router.navigate(['/updateProperty/'],updatedData.propertyId)">  -->
         <div class="col-3 offset-5">
             <form #propertyForm="ngForm" (ngSubmit)="updateProperty(propertyForm.value)">
+                    <button type="button" routerLink ='/businessProperty'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                          </svg>
+                        <i class="bi-chevron-double-left">
+                    </i></button>
                 <h3 class="input-group mb-3">Update Property Details</h3>
                 <!-- {{updatedData.property.propertyId}} -->
                 <!--  -->
@@ -169,9 +175,6 @@
                         <p class="offset-8" *ngIf="buildingType.errors?.required">Building type is required</p>
                     </div>
                 </div>
-                <!-- {{updatedData.property.buildingStoreys}}
-                buildingStoreys : <input type="number" id="buildingStoreys" name="buildingStoreys"
-                [(ngModel)] ="updatedData.buildingStoreys"> -->
                 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Building Storeys</span>
@@ -202,9 +205,9 @@
                         <p class="offset-8" *ngIf="businessId.errors?.required">Building Id is required</p>
                     </div>
                     <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
-                data-bs-toggle="modal" data-bs-target="#myModal">R</button>
+                data-bs-toggle="modal" data-bs-target="#myModal1">R</button>
 
-                <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal fade" id="myModal1" role="dialog">
                     <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -243,11 +246,11 @@
                         <p class="offset-8" *ngIf="propertyMasterId.errors?.required">Property Id is required</p>
                     </div>
                     <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
-                    data-bs-toggle="modal" data-bs-target="#myModal">R</button>
+                    data-bs-toggle="modal" data-bs-target="#myModalupdate">R</button>
                 </div>
                 
                 <!-- Modal Content -->
-                <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal fade" id="myModalupdate" role="dialog">
                     <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -288,5 +291,5 @@
             <div class="alert alert-success" *ngIf="update_message">{{update_message}}</div>
             <div class="alert alert-danger mt-2" *ngIf ="errorMessage">Please Check For Property Master Id or Property Id</div>
         </div>
-        </div>
+    </div>
         <!-- {{updatedData | json }} -->

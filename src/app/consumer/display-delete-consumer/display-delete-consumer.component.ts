@@ -53,16 +53,13 @@ export class DisplayDeleteConsumerComponent implements OnInit {
   delete_message:string="";
   deleteConsumer(consumerId:number) : void
   {
-      // debugger;
       this.service.deleteConsumer(consumerId).subscribe(data =>
       {
-        // alert("Consumer ID" +  " " + consumerId.toString()+ " " + "Deleted")
         this.router.navigateByUrl('/consumer/');
         this.getConsumer();
         this.delete_message = "Deleted Consumer" + consumerId;
         console.log(data);
       })
-    //debugger;
   }
 
   addClick()
@@ -72,7 +69,6 @@ export class DisplayDeleteConsumerComponent implements OnInit {
 
   editClick(consumer:ConsumerModel) : void
   {
-    // this.router.navigate(['/updateConsumer/',consumerId ]);
     this.router.navigateByUrl('/updateConsumer/', {state: { consumer } });
     console.log("Update Done");
 

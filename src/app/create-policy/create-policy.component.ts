@@ -52,7 +52,7 @@ export class CreatePolicyComponent implements OnInit {
   }
 
   checkPolicyStatus(myPolicyStatus:string):boolean{
-    return myPolicyStatus === "Policy has been created with Policy Status \'Initiated\'";
+    return myPolicyStatus === "Policy has been created with Policy Status \'Initiated\'.";
   }
 
   getProperties(){

@@ -1,6 +1,6 @@
 <div class="col-11 row mt-5" *ngIf="router.url === '/addConsumer/ConsumerId/0'">
     <div class="col-3 offset-5">
-        <form #consumerForm="ngForm" (ngSubmit)="addConsumer(consumerForm.value)">
+        <form #consumerForm="ngForm" (ngSubmit)="addConsumer(consumerForm.value,consumerForm)">
             <button type="button" routerLink ='/consumer'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
@@ -48,23 +48,10 @@
                     <p class="offset-7" *ngIf="panNumber.errors?.required ">Pan Number is required</p>
                 </div>
             </div>
-
-                <!-- <span class="input-group-text" id="inputGroup-sizing-default">Agent Id</span> -->
                 <input type="number" #agentId = "ngModel" name="agentId" class="form-control" aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-default" 
                 [(ngModel)]="logInAgentId" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentId.invalid }" hidden>
 
-                    <!-- <select class="form-select" [(ngModel)] = "selectedAgentId" #agentName ="ngModel" 
-                    name ="agentId">
-                    <option value ="" disabled selected>Select</option>
-                    <option *ngFor="let agent of agentNameForDropDown" name ="agentId" 
-                    dropDownId = agent.id  [ngValue]="agent.id" ngDefaultControl
-                    [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required> 
-                    {{agent.agentNameDrop}}</option>
-                </select> -->
-                <!-- <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentId.invalid">
-                    <p class="offset-8" *ngIf="agentId.errors?.required">Agent Id is required</p>
-                </div> -->
 
 
             <div class="input-group mb-3">
@@ -72,16 +59,6 @@
                 <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-default" 
                 [(ngModel)]="logInAgentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" disabled> 
-                <!-- <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
-                    <p class="offset-7" *ngIf="agentName.errors?.required">Agent Name is required</p>
-                </div> -->
-                <!-- //TODO Error in Consile -->
-                <!-- <select class="form-select" [(ngModel)] = "selectedAgentName" name ="agentName">
-                    <option value ="" disabled selected>Select</option>
-                    <option *ngFor="let agent of agentNameForDropDown" #agentName ="ngModel" name ="agent" [(ngModel)]="agent.agentNameDrop" ngDefaultControl 
-                    [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required> 
-                    {{agent.agentNameDrop}}</option>
-                </select> -->
             </div>
             <br>
             <button type="submit" class="btn btn-outline-success" [disabled]="consumerForm.invalid" value="Create">Create</button>
@@ -91,8 +68,6 @@
                 <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
         </form>
         <br>
-        <!-- <div class="alert alert-success" *ngIf="create_message">{{create_message}} 
-        </div> -->
     </div>
     </div>
 
@@ -102,8 +77,13 @@
     <div class="col-11 row mt-5" *ngIf="router.url === '/updateConsumer/'">
         <div class="col-3 offset-5">
             <form #consumerForm="ngForm" (ngSubmit)="updateConsumer(consumerForm.value)">
+                <button type="button" routerLink ='/consumer'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                      </svg>
+                    <i class="bi-chevron-double-left">
+                </i></button>
                 <h3 class="input-group mb-3">Update Consumer</h3>
-                
                 <div class="input-group mb-3">
                     <input type="number" #consumerId="ngModel"  name="consumerId" class="form-control" 
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
@@ -160,42 +140,19 @@
                     [(ngModel)]="updatedConsumerData.consumer.agentId" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentId.invalid }"  hidden>
                 </div>
 
-                <!-- <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
-                        <select class="form-select" [(ngModel)] = "selectedAgentId" #agentName ="ngModel" 
-                        name ="agentId">
-                        <option value ="" disabled selected >{{agentName.value}}</option>
-                        <option *ngFor="let agent of agentNameForDropDown" name ="agentId" 
-                        dropDownId = agent.id  [value]="agent.agentNameDrop" ngDefaultControl
-                        [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required> 
-                        {{agent.agentNameDrop}}</option>
-                    </select>
-                </div> -->
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
                     <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
                     aria-describedby="inputGroup-sizing-default" 
                     [(ngModel)]="editAgentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" disabled> 
-                    <!-- <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
-                        <p class="offset-7" *ngIf="agentName.errors?.required">Agent Name is required</p>
-                    </div> -->
+
                 </div>
-    
-                <!-- <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Agent Name</span>
-                    <input type="text" #agentName ="ngModel" name="agentName" class="form-control" aria-label="Sizing example input" 
-                    aria-describedby="inputGroup-sizing-default" 
-                    [(ngModel)]="updatedConsumerData.consumer.agentName" [ngClass]="{ 'is-invalid': consumerForm.submitted && agentName.invalid }" required>
-                    <div class="invalid-feedback" *ngIf="consumerForm.submitted && agentName.invalid">
-                        <p class="offset-7" *ngIf="agentName.errors?.required">Agent Name id required</p>
-                    </div>
-                </div> -->
                 <br>
                 <input type="submit" class="btn btn-outline-danger" value="Update">
                 <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
             </form>
-            <div class="alert alert-info mt-2" *ngIf="create_message">{{create_message}}</div>
-            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">{{errorMessage}}</div>
+            <div class="alert alert-success mt-2" *ngIf="update_message">{{update_message}}</div>
+            <div class="alert alert-danger mt-2" *ngIf ="errorMessage">Please Provide Correct Details</div>
         </div>
         <!-- {{updatedConsumerData | json}} -->
         </div>

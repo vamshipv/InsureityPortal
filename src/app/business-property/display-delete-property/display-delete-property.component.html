@@ -27,7 +27,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of propertyList 
-      | paginate: {itemsPerPage: 5, currentPage: businessPropertyPgNo};" class ="text-center">
+      | paginate: {itemsPerPage: 7, currentPage: businessPropertyPgNo};" class ="text-center">
         <td scope="row">{{data.buildingType}}</td>
         <td scope="row">{{data.buildingStoreys}}</td>
         <td scope="row">{{data.buildingAge}}</td>
@@ -35,7 +35,6 @@
         <td scope="row">{{data.propertyMaster.salvageValue}}</td>
         <td scope="row">{{data.propertyMaster.usefulLifeOfAssest}}</td>
         <td scope="row">{{data.propertyMaster.propertyValue}}</td>
-        <!-- <a [routerLink]="['/updateProperty']" ></a> -->
         <td scope="row"><button type="button" 
           class="btn btn-outline-success text-center" (click)="editClick(data)">Edit</button></td>
         <td><button type="button" class="btn btn-outline-danger text-center" class="btn btn-outline-danger" data-bs-toggle="modal" 
@@ -55,11 +54,11 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button  type="button" class="btn btn-primary" data-bs-dismiss="modal"  (click)="deleteProperty(deletePropertyId)" > Delete </button>
           </div>
-        </div>
-        </div>
-      </div>
-      </td>
-      </tr>
+          </div>
+          </div>
+          </div>
+        </td>
+        </tr>
     </tbody>
   </table>
   <pagination-controls (pageChange)="businessPropertyPgNo = $event"></pagination-controls>

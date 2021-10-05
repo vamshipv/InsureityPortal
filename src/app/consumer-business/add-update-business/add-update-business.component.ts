@@ -8,6 +8,7 @@ import { ConsumerService } from 'src/app/Services/consumer.service';
 import { ConsumerModel } from 'src/app/Models/consumer.model';
 import { BusinessMaster } from 'src/app/Models/business-master.Model';
 import { data } from 'autoprefixer';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-update-business',
@@ -94,17 +95,15 @@ export class AddUpdateBusinessComponent implements OnInit {
 
   errorMessage = [] = "";
   create_message: string ="";
-  addBusiness(business:ConsumerBusinessModel) : void
+  addBusiness(business:ConsumerBusinessModel,businessrForm:NgForm) : void
   {
-    // debugger;
     this.service.addBusiness(business).subscribe(data => 
       {
       this.create_message="Consumer Business was Added";
       this.service.getBusinessList();
-      // this.router.navigate(['/consumerBusiness']);
       console.log(data);
+      businessrForm.resetForm();
       },
-      // err => {console.log(err);}
         err => {
           this.errorMessage = err.error;
           ;
@@ -117,22 +116,18 @@ export class AddUpdateBusinessComponent implements OnInit {
     return true;
   }
   
-  // update_Id:string | null= this.route.snapshot.paramMap.get('id');
   update_message:string ="";
   updateBusiness(business:ConsumerBusinessModel) : void
   {
       this.service.updateBusiness(business).subscribe(data => {
       this.update_message = "Updated Business";
       this.service.getBusinessList();
-      // this.router.navigate(['/consumerBusiness']);
       console.log(data);
     },
-    // err => {console.log(err);}
       err => {
         this.errorMessage = err.error;
         ;
       } 
   );
   }
-
 }

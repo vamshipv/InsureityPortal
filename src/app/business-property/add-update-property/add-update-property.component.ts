@@ -11,6 +11,7 @@ import { ConsumerBusinessModel } from 'src/app/Models/consumer-business.model';
 import { BusinessMaster } from 'src/app/Models/business-master.Model';
 import { PropertyMaster } from 'src/app/Models/property-master.Model';
 import { ConsumerService } from 'src/app/Services/consumer.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-update-property',
@@ -76,12 +77,7 @@ export class AddUpdatePropertyComponent implements OnInit {
     this.getProperty();
     this.getBusiness();
     this.getpropertyMasterList();
-    // this.data = this.service.data;
-    // this.service.data = undefined;
-    // this.state$ = this.route.paramMap.pipe(map(() => window.history.state))
-    // console.log(this.state$);
     this.router.getCurrentNavigation()?.extras.state;
-    // {{debugger}}
     console.log(history.state);
     console.log("Navigated to Update Page");
     this.updatedData = history.state;
@@ -114,15 +110,15 @@ export class AddUpdatePropertyComponent implements OnInit {
 
   create_message: string ="";
   errorMessage = [] = "";
-  addProperty(property:BusinessPropertyModel) : void
+  addProperty(property:BusinessPropertyModel,propertyForm:NgForm) : void
   {
     this.service.addProperty(property).subscribe(data => 
       {
       this.create_message="Property Business Was Added";
       this.service.getPropertyList();
       console.log(data);
+      propertyForm.resetForm();
       },
-    // err => {console.log(err);}
       err => {
         this.errorMessage = err.error;
         ;
@@ -133,14 +129,11 @@ export class AddUpdatePropertyComponent implements OnInit {
   update_message:string ="";
   updateProperty(property:BusinessPropertyModel) : void
   {
-      // debugger;
       this.service.updateProperty(property).subscribe(data => {
       this.update_message = "Updated Property";
       this.service.getPropertyList();
-      // this.router.navigate(['/businessProperty']);
       console.log(data);
     },
-    // err => {console.log(err);}
       err => {
         this.errorMessage = err.error;
         ;

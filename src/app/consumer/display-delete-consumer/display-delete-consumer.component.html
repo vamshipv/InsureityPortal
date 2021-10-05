@@ -3,7 +3,6 @@
 </div>
 <hr>
 <div class="row">
-  <!-- <h3 class="col-5 offset-2">List of Consumers</h3> -->
   <div class="form-group col-md-7 offset-sm-2">
     <input type="text" class="form-control" name="name" [(ngModel)]="consumerName" 
     (ngModelChange)="searchConsumer()" 
@@ -11,9 +10,7 @@
   </div>
   <div class="col"> <!-- offset-9 -->
       <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal" (click)="addClick();">Add Consumer</button>
-      <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="editClick()">Edit Consumer</button>  -->
-      <!-- <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" (click)="deleteClick()">Delete Consumer</button>  -->
-  </div>
+      </div>
   <br>
   <br>
 </div>
@@ -27,7 +24,6 @@
       <th>Date Of Birth</th>
       <th>Email</th>
       <th>Pan Number</th>
-      <!-- <th>Agent Name</th> -->
       <th>Edit</th>
       <th>Delete</th>
     </tr>
@@ -39,8 +35,6 @@
       <td>{{data.dateOfBirth | date:'dd-MM-yyyy'}}</td>
       <td>{{data.email}}</td>
       <td>{{data.panNumber}}</td>
-      <!-- <td>{{data.agentName}}</td> -->
-      <!-- <a [routerLink]="['/updateConsumer/']" ></a> -->
       <td><button type="button" class="btn btn-outline-success text-center" (click)="editClick(data)">Edit</button></td>
       <td><button type="button" class="btn btn-outline-danger text-center" class="btn btn-outline-danger" data-bs-toggle="modal" 
         data-bs-target="#exampleModal" (click)="deleteConsumerId = data.consumerId">Delete</button>

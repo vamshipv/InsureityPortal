@@ -1,6 +1,6 @@
 <div class="col-11 row mt-5" *ngIf="router.url === '/addBusiness/BusinessId/0'">
     <div class="col-3 offset-5">
-        <form #businessrForm="ngForm" (ngSubmit)="addBusiness(businessrForm.value)">
+        <form #businessrForm="ngForm" (ngSubmit)="addBusiness(businessrForm.value,businessrForm)">
             <button type="button" routerLink ='/consumerBusiness'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
@@ -132,8 +132,6 @@
                 </div>
                 </div>
             </div>
-
-
             <br>
             <input type="submit" class="btn btn-outline-success" value="Create">
             <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Reset">
@@ -152,6 +150,12 @@
     <div class="col-11 row mt-5" *ngIf="router.url === '/updateBusiness/'">
         <div class="col-3 offset-5">
             <form #businessrForm="ngForm" (ngSubmit)="updateBusiness(businessrForm.value)">
+                <button type="button" routerLink ='/consumerBusiness'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                      </svg>
+                    <i class="bi-chevron-double-left">
+                </i></button>
                 <h3 class="input-group mb-3">Update Business</h3>
                 
                 <div class="input-group mb-3">
@@ -200,7 +204,7 @@
                         <p class="offset-7" *ngIf="businessMasterId.errors?.required">Business Master Id is required</p>
                     </div>
                     <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
-                    data-bs-toggle="modal" data-bs-target="#myModalupdate">R</button>
+                    data-bs-toggle="modal" data-bs-target="#myModalupdate12">R</button>
                 </div>
     
                 <div class="input-group mb-3">
@@ -212,11 +216,11 @@
                         <p class="offset-7" *ngIf="consumerId.errors?.required">Consumer Id is required</p>
                     </div>
                     <button type="button" class="input-group-text" id="inputGroup-sizing-default" 
-                    data-bs-toggle="modal" data-bs-target="#myModalupdate">R</button>
+                    data-bs-toggle="modal" data-bs-target="#myModal123">R</button>
                 </div>
     
                 <!-- Modal Content -->
-                <div class="modal fade" id="myModalupdate" role="dialog">
+                <div class="modal fade" id="myModalupdate12" role="dialog">
                     <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -240,6 +244,36 @@
                                             <td scope="row">{{data.capitalInvest}}</td>
                                         </tr>
                                     </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="myModal123" role="dialog">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">Consumer Id Reference</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <!-- //TODO -->
+                                <tr>
+                                    <th scope="col">Consumer Id</th>
+                                    <th scope="col">Consumer Name</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor ="let data of ConsumerList">
+                                        <td scope="row">{{data.consumerId}}</td>
+                                        <td scope="row">{{data.consumerName}}</td>
+    
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                         <div class="modal-footer">

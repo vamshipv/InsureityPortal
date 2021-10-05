@@ -4,7 +4,7 @@ import { ConsumerModel } from 'src/app/Models/consumer.model';
 import { Params, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Form } from '@angular/forms';
+import { FormGroup, FormBuilder, Form, NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Agent } from 'src/app/Models/agent.model'
 
@@ -26,15 +26,6 @@ export class AddUpdateConsumerComponent implements OnInit {
     agentId:0
   };
 
-  // agentNameForDropDown = [
-  //   {id: 1, agentNameDrop:"Shivangi"},
-  //   {id: 2 , agentNameDrop:"Ram"},
-  //   {id: 3 , agentNameDrop:"Vamshi"},
-  //   {id: 4 , agentNameDrop:"Sathvik"},
-  //   {id: 5 , agentNameDrop:"Vasavi"}
-  // ];
-  // selectedAgentId : string = "" ;
-  // dropDownId : number = 0;
   updatedConsumerData : any;
 
   agents:Agent[] = [
@@ -59,9 +50,7 @@ export class AddUpdateConsumerComponent implements OnInit {
     console.log("Navigated to Update Page");
     this.updatedConsumerData = history.state;
     console.log(this.updatedConsumerData); //
-    // console.log(this.updatedConsumerData.consumer.agentId);
-    // this.userId = this.agentNameForDropDown.findIndex(({id}) => id == this.updatedConsumerData.consumer.agentId)
-    // console.log(this.userId);
+
     this.getAgentId();
     this.getAgentName();
     
@@ -70,7 +59,6 @@ export class AddUpdateConsumerComponent implements OnInit {
   logInAgentName : string | null;
   logInAgentId : number;
   getAgentId(){
-    // debugger;
     this.logInAgentName = localStorage.getItem("logInAgentName");
     if(this.logInAgentName != null){
       this.agents.forEach((a : Agent) => {
@@ -91,17 +79,16 @@ export class AddUpdateConsumerComponent implements OnInit {
 
   errorMessage = [] = "";
   create_message: string ="";
-  addConsumer(consumer:ConsumerModel) : void
+  addConsumer(consumer:ConsumerModel,consumerForm:NgForm) : void
   {
     // this.getAgentId()
     this.service.addConsumer(consumer).subscribe(data => 
       {
-      // this.consumerForm.reset();
         this.create_message="New Consumer Created";
         this.getConsumer();
         console.log(data);
+        consumerForm.resetForm();
       },
-      // err => {console.log(err);}
         err => {
           this.errorMessage = err.error;
         } 
@@ -110,7 +97,6 @@ export class AddUpdateConsumerComponent implements OnInit {
 
   editAgentName:string;
   getAgentName(){
-    // debugger;
     if(this.updatedConsumerData.consumer.agentId != null){
       this.agents.forEach((a : Agent) => {
        if(a.agentId == this.updatedConsumerData.consumer.agentId){
@@ -125,14 +111,11 @@ export class AddUpdateConsumerComponent implements OnInit {
   update_message:string ="";
   updateConsumer(consumer:ConsumerModel) : void
   {
-      // this.getAgentName();
       this.service.updateConsumer(consumer).subscribe(data => {
       this.update_message = "Updated Consumer";
       this.getConsumer();
-      // this.router.navigate(['/consumer'])
       console.log(data);
     },
-    // err => {console.log(err);}
       err => {
         this.errorMessage = err.error;
         ;
