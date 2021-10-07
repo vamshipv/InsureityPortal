@@ -1,4 +1,27 @@
-# PolicyAdminstrationService
+# Insureity Portal
+
+Portal allows the Agents to Login. Once successfully logged in, the agent do the following operations: 
+
+* Create / Edit / View Consumer Businesses and Properties 
+
+* Create Policy / Issue Policy / View Policy 
+
+Each of the above operations will reach out to the middleware Microservices (Consumer, Policy and Quote microservice) that are hosted in cloud. 
+
+## Requirements
+
+Hardware Requirement: 
+
+* Developer Desktop PC with 8GB RAM 
+
+Software Requirement (Dotnet) 
+
+* Visual studio 2019
+* Angular 12
+* SQL Server 2016
+* Postman Client in Chrome 
+
+## Angular Deployment
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
 
