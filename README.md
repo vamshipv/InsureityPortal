@@ -12,13 +12,15 @@ Each of the above operations will reach out to the middleware Microservices (Con
 
 Hardware Requirement: 
 
-* Developer Desktop PC with 8GB RAM 
+* Developer Desktop PC with 8GB RAM recommended
 
 Software Requirement (Dotnet) 
 
-* Visual studio 2019
-* Angular 12
-* SQL Server 2016
+* Visual studio 2019 (To run microservices)
+* Angular CLI: 12.2.1
+* Node: 14.17.1
+* Package Manager: npm 6.14.13
+* SQL Server 2016 (For database)
 * Postman Client in Chrome 
 
 ## Angular Deployment
